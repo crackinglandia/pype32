@@ -1,0 +1,7 @@
+I just want to say thanks to the following people/projects:
+
+- PECOFF documentation from Microsoft.
+- y0da for the original Binary Corpus project.
+- Ange Albertini & corkami project for the custom PE samples.
+- marciano and VortiCe for their help with the design of the library, bugfixing and support.
+- Daniel Pistelli for CFF Explorer Suite and his work with the .NET format.

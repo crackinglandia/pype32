@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class Hierarchy</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pype32-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th bgcolor="#70b0f0" class="navbar-select"
+          >&nbsp;&nbsp;&nbsp;Trees&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://code.google.com/p/pype32">pype32 - Programming Reference</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">&nbsp;</td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="class-tree.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<center><b>
+ [ <a href="module-tree.html">Module Hierarchy</a>
+ | <a href="class-tree.html">Class Hierarchy</a> ]
+</b></center><br />
+<h1 class="epydoc">Class Hierarchy</h1>
+<ul class="nomargin-top">
+    <li> <strong class="uidlink">object</strong>:
+      <em class="summary">The most base type</em>
+    <ul>
+    <li> <strong class="uidlink">exceptions.BaseException</strong>:
+      <em class="summary">Common base class for all exceptions</em>
+    <ul>
+    <li> <strong class="uidlink">exceptions.Exception</strong>:
+      <em class="summary">Common base class for all non-exit exceptions.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="pype32.excep.PyPe32Exception-class.html">pype32.excep.PyPe32Exception</a></strong>:
+      <em class="summary">Base exception class.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="pype32.excep.ArrayTypeException-class.html">pype32.excep.ArrayTypeException</a></strong>:
+      <em class="summary">Raised when creating an unsupported type of array.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.excep.DataLengthException-class.html">pype32.excep.DataLengthException</a></strong>:
+      <em class="summary">Raised when data lengths does not match.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.excep.DataMismatchException-class.html">pype32.excep.DataMismatchException</a></strong>:
+      <em class="summary">Raised when two different types of data does not match.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.excep.DirectoryEntriesLengthException-class.html">pype32.excep.DirectoryEntriesLengthException</a></strong>:
+      <em class="summary">Raised when the the number of entries in a <a 
+        href="pype32.datadirs.DataDirectory-class.html" 
+        class="link">DataDirectory</a> object is different from <a 
+        href="pype32.consts-module.html#IMAGE_NUMBEROF_DIRECTORY_ENTRIES" 
+        class="link">consts.IMAGE_NUMBEROF_DIRECTORY_ENTRIES</a>.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.excep.DirectoryEntryException-class.html">pype32.excep.DirectoryEntryException</a></strong>:
+      <em class="summary">This exception must be raised when an error with the <a 
+        href="pype32.datadirs.Directory-class.html" 
+        class="link">Directory</a> is found.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.excep.InstanceErrorException-class.html">pype32.excep.InstanceErrorException</a></strong>:
+      <em class="summary">This exception is raised when an instance parameter was not 
+        specified.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.excep.InvalidParameterException-class.html">pype32.excep.InvalidParameterException</a></strong>:
+      <em class="summary">Raised when an invalid parameter is received.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.excep.NotValidPathException-class.html">pype32.excep.NotValidPathException</a></strong>:
+      <em class="summary">Raised when a path wasn't found or it is an invalid path.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.excep.PEException-class.html">pype32.excep.PEException</a></strong>:
+      <em class="summary">Raised when an invalid field on the PE instance was found.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.excep.ReadDataOffsetException-class.html">pype32.excep.ReadDataOffsetException</a></strong>:
+      <em class="summary">This exception must be raised when reading from an invalid offset.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.excep.SectionHeadersException-class.html">pype32.excep.SectionHeadersException</a></strong>:
+      <em class="summary">Raised when an error related to a <a 
+        href="pype32.pype32.SectionHeader-class.html" 
+        class="link">pype32.SectionHeader</a> or <a 
+        href="pype32.pype32.SectionHeaders-class.html" 
+        class="link">pype32.SectionHeaders</a> is found.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.excep.TypeNotSupportedException-class.html">pype32.excep.TypeNotSupportedException</a></strong>:
+      <em class="summary">This exception must be used when an invalid data type is used 
+        within the library.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.excep.WriteDataOffsetException-class.html">pype32.excep.WriteDataOffsetException</a></strong>:
+      <em class="summary">This exception must be raised when writing to an invalid offset.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.excep.WrongOffsetValueException-class.html">pype32.excep.WrongOffsetValueException</a></strong>:
+      <em class="summary">Used primary by the <a href="pype32.utils.ReadData-class.html" 
+        class="link">ReadData</a> and <a 
+        href="pype32.utils.WriteData-class.html" class="link">WriteData</a>
+        object in read/write operations when an invalid offset value was 
+        used.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.excep.PyPe32Warning-class.html">pype32.excep.PyPe32Warning</a></strong>:
+      <em class="summary">Base warning class.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="pype32.excep.PEWarning-class.html">pype32.excep.PEWarning</a></strong>:
+      <em class="summary">Raised when a suspicious value is found into the PE instance.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.baseclasses.BaseStructClass-class.html">pype32.baseclasses.BaseStructClass</a></strong>:
+      <em class="summary">Base class containing methods used by many others classes in the 
+        library.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="pype32.pype32.DosHeader-class.html">pype32.pype32.DosHeader</a></strong>:
+      <em class="summary">DosHeader object.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.directories.ExportTableEntry-class.html">pype32.directories.ExportTableEntry</a></strong>:
+      <em class="summary">ExportTableEntry object.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.pype32.FileHeader-class.html">pype32.pype32.FileHeader</a></strong>:
+      <em class="summary">FileHeader object.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.directories.ImageBaseRelocationEntry-class.html">pype32.directories.ImageBaseRelocationEntry</a></strong>:
+      <em class="summary">ImageBaseRelocationEntry object.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.directories.ImageBoundForwarderRefEntry-class.html">pype32.directories.ImageBoundForwarderRefEntry</a></strong>:
+      <em class="summary">ImageBoundForwarderRefEntry object.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.directories.ImageBoundImportDescriptorEntry-class.html">pype32.directories.ImageBoundImportDescriptorEntry</a></strong>:
+      <em class="summary">ImageBoundImportDescriptorEntry object.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.directories.ImageDebugDirectory-class.html">pype32.directories.ImageDebugDirectory</a></strong>:
+      <em class="summary">ImageDebugDirectory object.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.directories.ImageExportTable-class.html">pype32.directories.ImageExportTable</a></strong>:
+      <em class="summary">ImageExportTable object.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.directories.ImageImportDescriptorEntry-class.html">pype32.directories.ImageImportDescriptorEntry</a></strong>:
+      <em class="summary">ImageImportDescriptorEntry object.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.directories.ImageImportDescriptorMetaData-class.html">pype32.directories.ImageImportDescriptorMetaData</a></strong>:
+      <em class="summary">ImageImportDescriptorMetaData object.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.directories.ImportAddressTableEntry-class.html">pype32.directories.ImportAddressTableEntry</a></strong>:
+      <em class="summary">ImportAddressTableEntry object.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.directories.ImportAddressTableEntry64-class.html">pype32.directories.ImportAddressTableEntry64</a></strong>:
+      <em class="summary">ImportAddressTableEntry64 object.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.directories.NETDirectory-class.html">pype32.directories.NETDirectory</a></strong>:
+      <em class="summary">NETDirectory object.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.directories.NetDirectory-class.html">pype32.directories.NetDirectory</a></strong>:
+      <em class="summary">NetDirectory object.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.directories.NetMetaDataHeader-class.html">pype32.directories.NetMetaDataHeader</a></strong>:
+      <em class="summary">NetMetaDataHeader object.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.directories.NetMetaDataStreamEntry-class.html">pype32.directories.NetMetaDataStreamEntry</a></strong>:
+      <em class="summary">NetMetaDataStreamEntry object.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.directories.NetMetaDataTableHeader-class.html">pype32.directories.NetMetaDataTableHeader</a></strong>:
+      <em class="summary">NetMetaDataTableHeader object.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.directories.NetMetaDataTables-class.html">pype32.directories.NetMetaDataTables</a></strong>:
+      <em class="summary">NetMetaDataTables object.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.pype32.NtHeaders-class.html">pype32.pype32.NtHeaders</a></strong>:
+      <em class="summary">NtHeaders object.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.pype32.OptionalHeader-class.html">pype32.pype32.OptionalHeader</a></strong>:
+      <em class="summary">OptionalHeader object.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.pype32.OptionalHeader64-class.html">pype32.pype32.OptionalHeader64</a></strong>:
+      <em class="summary">OptionalHeader64 object.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.pype32.SectionHeader-class.html">pype32.pype32.SectionHeader</a></strong>:
+      <em class="summary">SectionHeader object.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.directories.TLSDirectory-class.html">pype32.directories.TLSDirectory</a></strong>:
+      <em class="summary">TLS directory object.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.directories.TLSDirectory64-class.html">pype32.directories.TLSDirectory64</a></strong>:
+      <em class="summary">TLSDirectory64 object.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.baseclasses.DataTypeBaseClass-class.html">pype32.baseclasses.DataTypeBaseClass</a></strong>
+    <ul>
+    <li> <strong class="uidlink"><a href="pype32.datatypes.BYTE-class.html">pype32.datatypes.BYTE</a></strong>:
+      <em class="summary">Byte object.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.datatypes.DWORD-class.html">pype32.datatypes.DWORD</a></strong>:
+      <em class="summary">Dword object.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.datatypes.QWORD-class.html">pype32.datatypes.QWORD</a></strong>:
+      <em class="summary">Qword object.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.datatypes.WORD-class.html">pype32.datatypes.WORD</a></strong>:
+      <em class="summary">Word object.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.datadirs.Directory-class.html">pype32.datadirs.Directory</a></strong>:
+      <em class="summary">Directory object.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.pype32.PE-class.html">pype32.pype32.PE</a></strong>:
+      <em class="summary">PE object.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.utils.ReadData-class.html">pype32.utils.ReadData</a></strong>:
+      <em class="summary">Returns a ReadData-like stream object.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.datatypes.String-class.html">pype32.datatypes.String</a></strong>:
+      <em class="summary">String object.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="pype32.datatypes.AlignedString-class.html">pype32.datatypes.AlignedString</a></strong>:
+      <em class="summary">Aligned string object.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.utils.WriteData-class.html">pype32.utils.WriteData</a></strong>:
+      <em class="summary">Return a WriteData-like stream object for writing.</em>
+    </li>
+    <li> <strong class="uidlink">list</strong>:
+      <em class="summary">list() -&gt; new empty list list(iterable) -&gt; new list 
+        initialized from iterable's items</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="pype32.datatypes.Array-class.html">pype32.datatypes.Array</a></strong>:
+      <em class="summary">Array object.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.datadirs.DataDirectory-class.html">pype32.datadirs.DataDirectory</a></strong>:
+      <em class="summary">DataDirectory object.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.directories.ExportTable-class.html">pype32.directories.ExportTable</a></strong>:
+      <em class="summary">Array of <a href="pype32.directories.ExportTableEntry-class.html" 
+        class="link">ExportTableEntry</a> objects.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.directories.ImageBaseRelocation-class.html">pype32.directories.ImageBaseRelocation</a></strong>:
+      <em class="summary">ImageBaseRelocation array.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.directories.ImageBoundForwarderRef-class.html">pype32.directories.ImageBoundForwarderRef</a></strong>:
+      <em class="summary">ImageBoundForwarderRef array object.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.directories.ImageBoundImportDescriptor-class.html">pype32.directories.ImageBoundImportDescriptor</a></strong>:
+      <em class="summary">ImageBoundImportDescriptor object.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.directories.ImageDebugDirectories-class.html">pype32.directories.ImageDebugDirectories</a></strong>:
+      <em class="summary">ImageDebugDirectories object.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.directories.ImageImportDescriptor-class.html">pype32.directories.ImageImportDescriptor</a></strong>:
+      <em class="summary">ImageImportDescriptor object.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.directories.ImportAddressTable-class.html">pype32.directories.ImportAddressTable</a></strong>:
+      <em class="summary">Array of <a 
+        href="pype32.directories.ImportAddressTableEntry-class.html" 
+        class="link">ImportAddressTableEntry</a> objects.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.directories.NetMetaDataStreams-class.html">pype32.directories.NetMetaDataStreams</a></strong>:
+      <em class="summary">NetMetaDataStreams object.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.pype32.SectionHeaders-class.html">pype32.pype32.SectionHeaders</a></strong>:
+      <em class="summary">SectionHeaders object.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pype32.pype32.Sections-class.html">pype32.pype32.Sections</a></strong>:
+      <em class="summary">Sections object.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+</ul>
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pype32-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th bgcolor="#70b0f0" class="navbar-select"
+          >&nbsp;&nbsp;&nbsp;Trees&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://code.google.com/p/pype32">pype32 - Programming Reference</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Jul 12 18:53:45 2013
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

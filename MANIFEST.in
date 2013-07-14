@@ -1,0 +1,6 @@
+include README
+include MANIFEST.in
+include THANKS
+include setup.py
+include tools/*.py
+include doc/*.*
