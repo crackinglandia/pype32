@@ -1,4 +1,4 @@
-<img src="http://goo.gl/jrf7j8" height="100" style="max-width: 100px">
+<img src="http://goo.gl/jrf7j8" height="100" style="max-width: 70px">
 
 What's pype32?
 ======
