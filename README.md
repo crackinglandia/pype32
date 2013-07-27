@@ -19,4 +19,4 @@ License
 Documentation
 ======
 
-You can find [epydoc](http://epydoc.sourceforge.net/) files for **pype32** under the [doc](doc/index.html) folder.
+You can find the **Programming Reference** documentation generated with [epydoc](http://epydoc.sourceforge.net/) for **pype32** under the [doc](doc/index.html) folder.
