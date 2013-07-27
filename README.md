@@ -8,7 +8,7 @@ Usage
 
 ```python
 >>> import pype32
->>> pe = pype32.PE("C:\Windows\notepad.exe")
+>>> pe = pype32.PE(r"C:\Windows\notepad.exe")
 ```
 
 License
