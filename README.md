@@ -1,4 +1,4 @@
-![alt tag](http://goo.gl/jrf7j8)
+<img src="http://goo.gl/jrf7j8" height="100" style="max-width: 120px">
 
 What's pype32?
 ======
