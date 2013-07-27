@@ -1,6 +1,4 @@
-<img src="http://goo.gl/jrf7j8" height="150" style="max-width: 70px">
-
-What's pype32?
+What's pype32? <img src="http://goo.gl/jrf7j8" align="right" height="150" style="max-width: 70px">
 ======
 
 Yet another Python library to read and write [PE/PE+](http://es.wikipedia.org/wiki/Portable_Executable) files.
