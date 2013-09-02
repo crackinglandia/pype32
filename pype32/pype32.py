@@ -402,7 +402,6 @@ class PE(object):
         
         if name:
             for i in range(len(self.sectionHeaders)):
-                print self.sectionHeaders[i].name.value
                 if self.sectionHeaders[i].name.value.find(name) >= 0:
                     index = i
                     break
