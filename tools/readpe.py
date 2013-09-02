@@ -35,6 +35,7 @@ __license__ = "BSD 3-Clause"
 
 import sys
 import pype32
+import optparse
 
 from pype32 import utils, datatypes, consts, datadirs
 
@@ -159,8 +160,6 @@ def prepareOptions(parser):
     AdditionalInformationGroup.add_option("-o",  "--overlay",  dest="show_overlay",  action="store_true",  default=False,  help="print file overlay (if any)")
     AdditionalInformationGroup.add_option("--fast-load",  dest="fast_load",  action="store_true",  default=False,  help="loads only PE-headers when parsing file")
     
-    parser.add_option("-f",  "--filename",  dest="filename",  help="PE-file to examine",  default=False)
-    
     parser.add_option_group(HeadersGroup)
     parser.add_option_group(DirectoriesGroup)
     parser.add_option_group(SectionsGroup)
@@ -169,7 +168,7 @@ def prepareOptions(parser):
     return parser
     
 def main():
-    usage = "usage %prog <option> -f PE-file"
+    usage = "usage %prog <option> PE-file"
     
     parserInst = OptionParser(usage=usage,  version="%prog 1.0")
     
@@ -177,53 +176,53 @@ def main():
     
     (options,  args) = parser.parse_args()
     
-    if not options.filename:
-        parser.print_help()
+    if len(args) != 1:
+        parser.error("incorrect number of arguments: no PE file was specified.")
+
+    if options.fast_load:
+        pe = pype32.PE(args[0],  fastLoad=True)
     else:
-        if options.fast_load:
-            pe = pype32.PE(options.filename,  fastLoad=True)
-        else:
-            pe = pype32.PE(options.filename)
+        pe = pype32.PE(args[0])
+
+    if options.show_headers:
+        showDosHeaderData(pe)
+        print "\n"
+        showNtHeadersData(pe)
+        print "\n"
+        showFileHeaderData(pe)
+        print "\n"
+        showOptionalHeaderData(pe)
+        print "\n"
+    elif options.show_directories:
+        showDataDirectoriesData(pe)
+    elif options.show_section_headers:
+        showSectionsHeaders(pe)
+    elif options.show_signature:
+        if len(pe.signature):
+            print "--> Digital signature detected. Length: %x" % len(pe.signature)
+            print "--> Signature (first 0x10 bytes): %r" % pe.signature[:0x10]
+    elif options.show_overlay:
+        if len(pe.overlay):
+            print "--> Overlay detected. Length: %x" % len(pe.overlay)
+    elif options.show_imports:
+        showImports(pe)
+    elif options.show_exports:
+        showExports(pe)
+    elif options.section_data:
+        pe.addSection(section_data)
+    elif options.multi:
+        if len(pe.sections):
             
-        if options.show_headers:
-            showDosHeaderData(pe)
-            print "\n"
-            showNtHeadersData(pe)
-            print "\n"
-            showFileHeaderData(pe)
-            print "\n"
-            showOptionalHeaderData(pe)
-            print "\n"
-        elif options.show_directories:
-            showDataDirectoriesData(pe)
-        elif options.show_section_headers:
-            showSectionsHeaders(pe)
-        elif options.show_signature:
-            if len(pe.signature):
-                print "--> Digital signature detected. Length: %x" % len(pe.signature)
-                print "--> Signature (first 0x10 bytes): %r" % pe.signature[:0x10]
-        elif options.show_overlay:
-            if len(pe.overlay):
-                print "--> Overlay detected. Length: %x" % len(pe.overlay)
-        elif options.show_imports:
-            showImports(pe)
-        elif options.show_exports:
-            showExports(pe)
-        elif options.section_data:
-            pe.addSection(section_data)
-        elif options.multi:
-            if len(pe.sections):
-                
-                try:
-                    index = int(options.multi[0])
-                except ValueError:
-                    raise "First parameter must be an integer!."
-                
-                pe.extendSection(options.multi[0],  options.multi[1])
-            else:
-                print "PE has no section to extend!."
+            try:
+                index = int(options.multi[0])
+            except ValueError:
+                raise "First parameter must be an integer!."
+            
+            pe.extendSection(options.multi[0],  options.multi[1])
         else:
-            parser.print_help()
+            print "PE has no section to extend!."
+    else:
+        parser.print_help()
         
     
 if __name__ == "__main__":
