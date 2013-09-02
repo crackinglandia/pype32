@@ -9,6 +9,21 @@ Usage
 ```python
 >>> import pype32
 >>> pe = pype32.PE(r"C:\Windows\notepad.exe")
+>>> p.sectionHeaders
+[<pype32.SectionHeader object at 0x01A802F0>, <pype32.SectionHeader object at 0x01A805F0>, <pype32.SectionHeader object at 0x01A803B0>, <pype32.SectionHeader object at 0x01A80730>]
+>>> len(p.sectionHeaders)
+4
+>>> len(p.sections)
+4
+>>> p.addSection("\x90\x90\x90", name="newsec")
+>>> len(p.sectionHeaders)
+5
+>>> len(p.sections)
+5
+>>> p.sectionHeaders[4].name.value
+'newsec'
+>>> p.sections[4]
+'\x90\x90\x90\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc
 ```
 
 License
