@@ -379,7 +379,7 @@ class PE(object):
         @param offset: Offset value.
         
         @rtype: int
-        @return: An index, starting at 1, that represents the section the given offset belongs to.
+        @return: An index, starting at 0, that represents the section the given offset belongs to.
         """
         index = -1
         for i in range(len(self.sectionHeaders)):
@@ -387,7 +387,27 @@ class PE(object):
                 index = i
                 break
         return index
-         
+    
+    def getSectionIndexByName(self, name):
+        """
+        Given a string representing a section name, tries to find the section index.
+
+        @type name: str
+        @param name: A section name.
+
+        @rtype: int
+        @return: The index, starting at 0, of the section.
+        """
+        index = -1
+        
+        if name:
+            for i in range(len(self.sectionHeaders)):
+                print self.sectionHeaders[i].name.value
+                if self.sectionHeaders[i].name.value.find(name) >= 0:
+                    index = i
+                    break
+        return index
+
     def getSectionByRva(self, rva):
         """
         Given a RVA in the file, tries to determine the section this RVA belongs to.
