@@ -35,7 +35,6 @@ __license__ = "BSD 3-Clause"
 
 import sys
 import pype32
-import optparse
 
 from pype32 import utils, datatypes, consts, datadirs
 
