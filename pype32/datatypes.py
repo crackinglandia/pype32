@@ -190,7 +190,7 @@ class Array(list):
                 newArray.append(BYTE(readDataInstance.readByte()))
         
         else:
-            raise ArrayTypeException("Could\'t create an array of type %d" % arrayType)
+            raise excep.ArrayTypeException("Could\'t create an array of type %d" % arrayType)
             
         return newArray
     
