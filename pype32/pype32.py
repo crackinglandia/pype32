@@ -1360,6 +1360,22 @@ class PE(object):
         """
         return binascii.crc32(str(self)) & 0xffffffff
 
+    def hasImportedFunction(self, funcName):
+        retval = False
+        if not self._fastLoad:
+            import_directory = self.ntHeaders.optionalHeader.dataDirectory[consts.IMPORT_DIRECTORY]
+            if import_directory:
+                for iid_entry in import_directory.info:
+                    for entry in iid_entry.iat:
+                        if entry.name.value == funcName:
+                            retval = True
+                            break
+            else:
+                print "WARNING: IMPORT_DIRECTORY not found on PE!"
+        else:
+            print "WARNING: fastLoad parameter was used to load the PE. Data directories are not parsed when using this options. Please, use fastLoad = False."
+        return retval
+
 class DosHeader(baseclasses.BaseStructClass):
     """DosHeader object."""
     def __init__(self,  shouldPack = True):
