@@ -35,3 +35,8 @@ Documentation
 ======
 
 You can find the **Programming Reference** documentation generated with [epydoc](http://epydoc.sourceforge.net/) for **pype32** under the [doc](doc/index.html) folder.
+
+Changelog
+======
+
+(https://github.com/crackinglandia/pype32/wiki/Changelog)
