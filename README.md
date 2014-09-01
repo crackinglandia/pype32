@@ -39,4 +39,4 @@ You can find the **Programming Reference** documentation generated with [epydoc]
 Changelog
 ======
 
-(https://github.com/crackinglandia/pype32/wiki/Changelog)
+See https://github.com/crackinglandia/pype32/wiki/Changelog
