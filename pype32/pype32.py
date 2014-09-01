@@ -350,7 +350,7 @@ class PE(object):
             offset = (rva - self.sectionHeaders[s].virtualAddress.value) + self.sectionHeaders[s].pointerToRawData.value
         else:
             offset = rva
-            
+        
         return offset
         
     def getRvaFromOffset(self, offset):
@@ -868,7 +868,48 @@ class PE(object):
         if boundImportsDir.rva.value and boundImportsDir.size.value:
             return True
         return False
-        
+
+    def isNXEnabled(self):
+        """
+        Determines if the current L{PE} instance has the NXCOMPAT (Compatible with Data Execution Prevention) flag enabled.
+        @see: U{http://msdn.microsoft.com/en-us/library/ms235442.aspx}
+
+        @rtype: bool
+        @return: Returns C{True} if the current L{PE} instance has the NXCOMPAT flag enabled. Otherwise, returns C{False}.
+        """
+        return self.ntHeaders.optionalHeader.dllCharacteristics.value & consts.IMAGE_DLL_CHARACTERISTICS_NX_COMPAT == consts.IMAGE_DLL_CHARACTERISTICS_NX_COMPAT
+
+    def isASLREnabled(self):
+        """
+        Determines if the current L{PE} instance has the DYNAMICBASE (Use address space layout randomization) flag enabled.
+        @see: U{http://msdn.microsoft.com/en-us/library/bb384887.aspx}
+
+        @rtype: bool
+        @return: Returns C{True} if the current L{PE} instance has the DYNAMICBASE flag enabled. Otherwise, returns C{False}.
+        """
+        return self.ntHeaders.optionalHeader.dllCharacteristics.value & consts.IMAGE_DLL_CHARACTERISTICS_DYNAMIC_BASE == consts.IMAGE_DLL_CHARACTERISTICS_DYNAMIC_BASE
+
+    def isSAFESEHEnabled(self):
+        """
+        Determines if the current L{PE} instance has the SAFESEH (Image has Safe Exception Handlers) flag enabled.
+        @see: U{http://msdn.microsoft.com/en-us/library/9a89h429.aspx}
+
+        @rtype: bool
+        @return: Returns C{True} if the current L{PE} instance has the SAFESEH flag enabled. Returns C{False} if SAFESEH is off or -1 if SAFESEH is set to NO.
+        """
+        NOSEH = -1
+        SAFESEH_OFF = 0
+        SAFESEH_ON = 1
+
+        if self.ntHeaders.optionalHeader.dllCharacteristics.value & consts.IMAGE_DLL_CHARACTERISTICS_NO_SEH:
+            return NOSEH
+
+        loadConfigDir = self.ntHeaders.optionalHeader.dataDirectory[consts.CONFIGURATION_DIRECTORY]
+        if loadConfigDir.info:
+            if loadConfigDir.info.SEHandlerTable.value:
+                return SAFESEH_ON
+        return SAFESEH_OFF
+
     def _parseDirectories(self, dataDirectoryInstance, magic = consts.PE32):
         """
         Parses all the directories in the L{PE} instance.
@@ -888,6 +929,7 @@ class PE(object):
                          (consts.DEBUG_DIRECTORY, self._parseDebugDirectory),\
                          (consts.BOUND_IMPORT_DIRECTORY, self._parseBoundImportDirectory),\
                          (consts.DELAY_IMPORT_DIRECTORY, self._parseDelayImportDirectory),\
+                         (consts.CONFIGURATION_DIRECTORY, self._parseLoadConfigDirectory),\
                          (consts.NET_METADATA_DIRECTORY, self._parseNetDirectory)]
         
         for directory in directories:
@@ -980,7 +1022,42 @@ class PE(object):
             offset = boundImportDirectory[i].offsetModuleName.value
             boundImportDirectory[i].moduleName = self.readStringAtRva(offset + rva)
         return boundImportDirectory
+
+    def _parseLoadConfigDirectory(self, rva, size, magic = consts.PE32):
+        """
+        Parses IMAGE_LOAD_CONFIG_DIRECTORY.
         
+        @type rva: int 
+        @param rva: The RVA where the IMAGE_LOAD_CONFIG_DIRECTORY starts.
+        
+        @type size: int
+        @param size: The size of the IMAGE_LOAD_CONFIG_DIRECTORY.
+        
+        @type magic: int
+        @param magic: (Optional) The type of PE. This value could be L{consts.PE32} or L{consts.PE64}.
+        
+        @rtype: L{ImageLoadConfigDirectory}
+        @return: A new L{ImageLoadConfigDirectory}. 
+        @note: if the L{PE} instance is a PE64 file then a new L{ImageLoadConfigDirectory64} is returned.
+        """
+        # print "RVA: %x - SIZE: %x" % (rva, size)
+
+        # I've found some issues when parsing the IMAGE_LOAD_CONFIG_DIRECTORY in some DLLs. 
+        # There is an inconsistency with the size of the struct between MSDN docs and VS.
+        # sizeof(IMAGE_LOAD_CONFIG_DIRECTORY) should be 0x40, in fact, that's the size Visual Studio put
+        # in the directory table, even if the DLL was compiled with SAFESEH:ON. But If that is the case, the sizeof the
+        # struct should be 0x48.
+        # more information here: http://www.accuvant.com/blog/old-meets-new-microsoft-windows-safeseh-incompatibility
+        data = self.getDataAtRva(rva, directories.ImageLoadConfigDirectory().sizeof())
+        rd = utils.ReadData(data)
+
+        if magic == consts.PE32:
+            return directories.ImageLoadConfigDirectory.parse(rd)
+        elif magic == consts.PE64:
+            return directories.ImageLoadConfigDirectory64.parse(rd)
+        else:
+            raise excep.InvalidParameterException("Wrong magic")
+
     def _parseTlsDirectory(self, rva, size, magic = consts.PE32):
         """
         Parses the TLS directory.

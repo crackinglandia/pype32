@@ -138,7 +138,7 @@ def showExports(peInstance):
                 print "%s -> %r" % (field,  entry_fields[field].value)    
     else:
         print "The file does not have exported functions."
-        
+
 def prepareOptions(parser):
     HeadersGroup = OptionGroup(parser,  "Options for PE Headers")
     DirectoriesGroup = OptionGroup(parser,  "Options for Directories")

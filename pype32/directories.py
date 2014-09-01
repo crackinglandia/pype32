@@ -224,7 +224,7 @@ class ImageBoundImportDescriptorEntry(baseclasses.BaseStructClass):
         boundEntry = ImageBoundImportDescriptorEntry()
         boundEntry.timeDateStamp.value = readDataInstance.readDword()
         boundEntry.offsetModuleName.value = readDataInstance.readWord()
-        boundEntry.numberOfModuleForwarderRefs .value = readDataInstance.readWord()
+        boundEntry.numberOfModuleForwarderRefs.value = readDataInstance.readWord()
         
         numberOfForwarderRefsEntries = boundEntry.numberOfModuleForwarderRefs .value
         if numberOfForwarderRefsEntries:
@@ -327,6 +327,158 @@ class TLSDirectory64(baseclasses.BaseStructClass):
         tlsDir.sizeOfZeroFill.value = readDataInstance.readDword()
         tlsDir.characteristics.value = readDataInstance.readDword()
         return tlsDir
+
+# http://msdn.microsoft.com/en-us/library/windows/desktop/ms680328%28v=vs.85%29.aspx
+class ImageLoadConfigDirectory(baseclasses.BaseStructClass):
+    "IMAGE_LOAD_CONFIG_DIRECTORY32 object aka CONFIGURATION_DIRECTORY"
+    def __init__(self, shouldPack = True):
+        """
+        Class representation of a C{IMAGE_LOAD_CONFIG_DIRECTORY32} structure.
+
+        @type shouldPack: bool
+        @param shouldPack: (Optional) If set to c{True}, the object will be packed. If set to C{False}, the object won't be packed.
+        """
+        baseclasses.BaseStructClass.__init__(self, shouldPack)
+
+        self.size = datatypes.DWORD()
+        self.timeDateStamp = datatypes.DWORD()
+        self.majorVersion = datatypes.WORD()
+        self.minorVersion = datatypes.WORD()
+        self.globalFlagsClear = datatypes.DWORD()
+        self.globalFlagsSet = datatypes.DWORD()
+        self.criticalSectionDefaultTimeout = datatypes.DWORD()
+        self.deCommitFreeBlockThreshold = datatypes.DWORD()
+        self.deCommitTotalFreeThreshold = datatypes.DWORD()
+        self.lockPrefixTable = datatypes.DWORD() # VA
+        self.maximumAllocationSize = datatypes.DWORD()
+        self.virtualMemoryThreshold = datatypes.DWORD()
+        self.processHeapFlags = datatypes.DWORD()
+        self.processAffinityMask = datatypes.DWORD()
+        self.csdVersion = datatypes.WORD()
+        self.reserved1 = datatypes.WORD()
+        self.editList = datatypes.DWORD() # VA
+        self.securityCookie = datatypes.DWORD() # VA
+        self.SEHandlerTable = datatypes.DWORD() # VA
+        self.SEHandlerCount = datatypes.DWORD()
+
+        self._attrsList = ["size", "timeDateStamp", "majorVersion", "minorVersion", "globalFlagsClear", "globalFlagsSet", "criticalSectionDefaultTimeout", "deCommitFreeBlockThreshold",\
+                            "deCommitTotalFreeThreshold", "lockPrefixTable", "maximumAllocationSize", "virtualMemoryThreshold", "processHeapFlags", "processAffinityMask", "csdVersion",\
+                            "reserved1", "editList", "securityCookie", "SEHandlerTable","SEHandlerCount"]
+
+    def getType(self):
+        """Returns L{consts.IMAGE_LOAD_CONFIG_DIRECTORY32}."""
+        return consts.IMAGE_LOAD_CONFIG_DIRECTORY32
+
+    @staticmethod
+    def parse(readDataInstance):
+        """
+        Returns a new L{ImageLoadConfigDirectory} object.
+        
+        @type readDataInstance: L{ReadData}
+        @param readDataInstance: A L{ReadData} object containing data to create a new L{ImageLoadConfigDirectory} object.
+        
+        @rtype: L{ImageLoadConfigDirectory}
+        @return: A new L{ImageLoadConfigDirectory} object.
+        """
+        configDir = ImageLoadConfigDirectory()
+
+        configDir.size.value = readDataInstance.readDword()
+        configDir.timeDateStamp.value = readDataInstance.readDword()
+        configDir.majorVersion.value = readDataInstance.readWord()
+        configDir.minorVersion.value = readDataInstance.readWord()
+        configDir.globalFlagsClear.value = readDataInstance.readDword()
+        configDir.globalFlagsSet.value = readDataInstance.readDword()
+        configDir.criticalSectionDefaultTimeout.value = readDataInstance.readDword()
+        configDir.deCommitFreeBlockThreshold.value = readDataInstance.readDword()
+        configDir.deCommitTotalFreeThreshold.value = readDataInstance.readDword()
+        configDir.lockPrefixTable.value = readDataInstance.readDword() # VA
+        configDir.maximumAllocationSize.value = readDataInstance.readDword()
+        configDir.virtualMemoryThreshold.value = readDataInstance.readDword()
+        configDir.processHeapFlags.value = readDataInstance.readDword()
+        configDir.processAffinityMask.value = readDataInstance.readDword()
+        configDir.csdVersion.value = readDataInstance.readWord()
+        configDir.reserved1.value = readDataInstance.readWord()
+        configDir.editList.value = readDataInstance.readDword() # VA
+        configDir.securityCookie.value = readDataInstance.readDword() # VA
+        configDir.SEHandlerTable.value = readDataInstance.readDword() # VA
+        configDir.SEHandlerCount.value = readDataInstance.readDword()
+        return configDir
+
+class ImageLoadConfigDirectory64(baseclasses.BaseStructClass):
+    "IMAGE_LOAD_CONFIG_DIRECTORY64 object"
+    def __init__(self, shouldPack = True):
+        """
+        Class representation of a C{IMAGE_LOAD_CONFIG_DIRECTORY64} structure in 64 bits systems.
+
+        @type shouldPack: bool
+        @param shouldPack: (Optional) If set to c{True}, the object will be packed. If set to C{False}, the object won't be packed.
+        """
+        baseclasses.BaseStructClass.__init__(self, shouldPack)
+
+        self.size = datatypes.DWORD()
+        self.timeDateStamp = datatypes.DWORD()
+        self.majorVersion = datatypes.WORD()
+        self.minorVersion = datatypes.WORD()
+        self.globalFlagsClear = datatypes.DWORD()
+        self.globalFlagsSet = datatypes.DWORD()
+        self.criticalSectionDefaultTimeout = datatypes.DWORD()
+        self.deCommitFreeBlockThreshold = datatypes.QWORD()
+        self.deCommitTotalFreeThreshold = datatypes.QWORD()
+        self.lockPrefixTable = datatypes.QWORD()
+        self.maximumAllocationSize = datatypes.QWORD()
+        self.virtualMemoryThreshold = datatypes.QWORD()
+        self.processAffinityMask = datatypes.QWORD()
+        self.processHeapFlags = datatypes.DWORD()
+        self.cdsVersion = datatypes.WORD()
+        self.reserved1 = datatypes.WORD()
+        self.editList = datatypes.QWORD()
+        self.securityCookie = datatypes.QWORD()
+        self.SEHandlerTable = datatypes.QWORD()
+        self.SEHandlerCount = datatypes.QWORD()
+
+        self._attrsList = ["size", "timeDateStamp", "majorVersion", "minorVersion", "globalFlagsClear", "globalFlagsSet", "criticalSectionDefaultTimeout", "deCommitFreeBlockThreshold",\
+                            "deCommitTotalFreeThreshold", "lockPrefixTable", "maximumAllocationSize", "virtualMemoryThreshold", "processAffinityMask", "processHeapFlags", "cdsVersion",\
+                            "reserved1", "editList", "securityCookie", "SEHandlerTable", "SEHandlerCount",]
+
+
+    def getType(self):
+        """Returns L{consts.IMAGE_LOAD_CONFIG_DIRECTORY64}."""
+        return consts.IMAGE_LOAD_CONFIG_DIRECTORY64
+
+    @staticmethod
+    def parse(readDataInstance):
+        """
+        Returns a new L{ImageLoadConfigDirectory64} object.
+        
+        @type readDataInstance: L{ReadData}
+        @param readDataInstance: A L{ReadData} object containing data to create a new L{ImageLoadConfigDirectory64} object.
+        
+        @rtype: L{ImageLoadConfigDirectory64}
+        @return: A new L{ImageLoadConfigDirectory64} object.
+        """
+        configDir = ImageLoadConfigDirectory64()
+
+        configDir.size.value = readDataInstance.readDword()
+        configDir.timeDateStamp.value = readDataInstance.readDword()
+        configDir.majorVersion.value = readDataInstance.readWord()
+        configDir.minorVersion.value = readDataInstance.readWord()
+        configDir.globalFlagsClear.value = readDataInstance.readDword()
+        configDir.globalFlagsSet.value = readDataInstance.readDword()
+        configDir.criticalSectionDefaultTimeout.value = readDataInstance.readDword()
+        configDir.deCommitFreeBlockThreshold.value = readDataInstance.readQword()
+        configDir.deCommitTotalFreeThreshold.value = readDataInstance.readQword()
+        configDir.lockPrefixTable.value = readDataInstance.readQword()
+        configDir.maximumAllocationSize.value = readDataInstance.readQword()
+        configDir.virtualMemoryThreshold.value = readDataInstance.readQword()
+        configDir.processAffinityMask.value = readDataInstance.readQword()
+        configDir.processHeapFlags.value = readDataInstance.readDword()
+        configDir.cdsVersion.value = readDataInstance.readWord()
+        configDir.reserved1.value = readDataInstance.readWord()
+        configDir.editList.value = readDataInstance.readQword()
+        configDir.securityCookie.value = readDataInstance.readQword()
+        configDir.SEHandlerTable.value = readDataInstance.readQword()
+        configDir.SEHandlerCount.value = readDataInstance.readQword()
+        return configDir
 
 class ImageBaseRelocationEntry(baseclasses.BaseStructClass):
     """ImageBaseRelocationEntry object."""
