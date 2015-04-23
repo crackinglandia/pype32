@@ -1385,6 +1385,7 @@ class PE(object):
             
             for i in range(numberOfStreams):
                 name = netDirectoryClass.netMetaDataStreams[i].name.value
+                rd.setOffset(netDirectoryClass.netMetaDataStreams[i].offset.value)
                 if name.find("#~") >= 0:
                     netDirectoryClass.netMetaDataStreams[i].info = directories.NetMetaDataTables.parse(utils.ReadData(rd.read(netDirectoryClass.netMetaDataStreams[i].size.value)))
                 else:
