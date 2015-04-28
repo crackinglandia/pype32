@@ -39,7 +39,7 @@ You can find the **Programming Reference** documentation generated with [epydoc]
 Projects using pype32
 ======
 
- * malwareconfig.com by Kevin Breen
+ * (http://malwareconfig.com/) by **Kevin Breen**
   
 Changelog
 ======
