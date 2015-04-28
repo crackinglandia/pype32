@@ -36,6 +36,11 @@ Documentation
 
 You can find the **Programming Reference** documentation generated with [epydoc](http://epydoc.sourceforge.net/) for **pype32** under the [doc](doc/index.html) folder.
 
+Projects using pype32
+======
+
+ * malwareconfig.com by Kevin Breen
+  
 Changelog
 ======
 
