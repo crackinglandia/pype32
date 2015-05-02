@@ -41,12 +41,13 @@ __all__ = [
            "ReadData", 
            "WriteData", 
            ]
-           
+
 import excep
 
 from cStringIO import StringIO as cstringio
 from StringIO import StringIO
 from struct import pack, unpack
+import uuid
 
 def powerOfTwo(value):
     """
@@ -200,9 +201,10 @@ class ReadData(object):
         self.endianness = endianness
         self.signed = signed
         self.log = False
+        self.length = len(data)
 
     def __len__(self):
-        return len(self.data[self.offset:])
+        return self.length - self.offset
         
     def readDword(self):
         """
@@ -233,7 +235,7 @@ class ReadData(object):
         @rtype: int
         @return: The byte value read from the L{ReadData} stream.
         """
-        byte = unpack('B' if not self.signed else 'b', self.readAt(self.offset,  1))[0]
+        byte = unpack('B' if not self.signed else 'b', self.readAt(self.offset, 1))[0]
         self.offset += 1
         return byte
     
@@ -277,7 +279,7 @@ class ReadData(object):
             s += self.data[self.offset]
             self.offset += 1
             r -= 1
-        return s
+        return s.rstrip("\x00")
         
     def read(self, nroBytes):
         """
@@ -291,10 +293,10 @@ class ReadData(object):
         
         @raise DataLengthException: The number of bytes tried to be read are more than the remaining in the L{ReadData} stream.
         """
-        if nroBytes > len(self.data[self.offset:]):
+        if nroBytes > self.length - self.offset:
             if self.log:
-                print "Warning: Trying to read: %d bytes - only %d bytes left" % (nroBytes,  len(self.data[self.offset:]))
-            nroBytes = len(self.data[self.offset:])
+                print "Warning: Trying to read: %d bytes - only %d bytes left" % (nroBytes,  self.length - self.offset)
+            nroBytes = self.length - self.offset
 
         resultStr = self.data[self.offset:self.offset + nroBytes]
         self.offset += nroBytes
@@ -335,10 +337,10 @@ class ReadData(object):
         @rtype: str
         @return: A packed string containing the read data.
         """
-        if offset > len(self.data):
+        if offset > self.length:
             if self.log:
-                print "Warning: Trying to read: %d bytes - only %d bytes left" % (nroBytes,  len(self.data[self.offset:]))
-            offset = len(self.data[self.offset:])
+                print "Warning: Trying to read: %d bytes - only %d bytes left" % (nroBytes,  self.length - self.offset)
+            offset = self.length - self.offset
         tmpOff = self.tell()
         self.setOffset(offset)
         r = self.read(size)
@@ -353,4 +355,57 @@ class ReadData(object):
         @return: The value of the current offset in the stream.
         """        
         return self.offset
-        
+
+    def readFields(self, fields):
+        result = {}
+        #if not isinstance(fields, (list, tuple)): raise Exception("Invalid field list '{0}'.".format(type(fields).__name__))
+        if not isinstance(fields, (list, tuple)): return result
+        for field in fields:
+            if not isinstance(field, dict): raise Exception("Invalid field definition '{0}'.".format(type(field).__name__))
+            for k, v in field.iteritems():
+                #print type(v).__name__
+                parsed = v.parse(self)
+                result.update({ k: parsed.value })
+                break # only process the first
+        return result
+
+    def read7BitEncodedInteger(self):
+        b = self.readByte()
+        if not b & 0x80:
+            result = b
+        elif not b & 0x40:
+            result = b & 0x3f
+            result = result << 8 | self.readByte()
+        elif not b & 0x20:
+            result = b & 0x1f
+            result = result << 8 | self.readByte()
+            result = result << 8 | self.readByte()
+            result = result << 8 | self.readByte()
+        else:
+            raise Exception("Invalid 7-bit encoded number.")
+        return result
+
+    def readDotNetString(self):
+        string = self.readString()
+        self.skipBytes(1)
+        return string
+
+    def readDotNetUnicodeString(self):
+        length = self.read7BitEncodedInteger()
+        flag = False
+        if length % 2:
+            string = self.read(length - 1)
+            flag = bool(self.readByte())
+        else:
+            string = self.read(length)
+        string = string.decode('utf_16')
+        return string
+
+    def readDotNetGuid(self):
+        guid = str(uuid.UUID(bytes=self.read(16)))
+        return guid
+
+    def readDotNetBlob(self):
+        length = self.read7BitEncodedInteger()
+        blob = self.read(length)
+        return blob

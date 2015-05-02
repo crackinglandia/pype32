@@ -40,6 +40,7 @@ import datadirs
 import excep
 import utils
 import baseclasses
+import dotnet
 
 # typedef struct IMAGE_BOUND_FORWARDER_REF
 # {
@@ -692,7 +693,7 @@ class ImageImportDescriptorEntry(baseclasses.BaseStructClass):
 
 class ImageImportDescriptor(list):
     """ImageImportDescriptor object."""
-    def __init__(self,  shouldPack = True):
+    def __init__(self, shouldPack = True):
         """
         Array of L{ImageImportDescriptorEntry} objects.
         
@@ -1095,13 +1096,13 @@ class NetMetaDataStreamEntry(baseclasses.BaseStructClass):
         n.name.value = readDataInstance.readAlignedString()
         return n
         
-class NetMetaDataStreams(list):
+class NetMetaDataStreams(dict):
     """NetMetaDataStreams object."""
     def __init__(self,  shouldPack = True):
         self.shouldPack = shouldPack
         
     def __str__(self):
-        return "".join([str(x) for x in self if x.shouldPack])
+        return "".join([str(x) for x in self if hasattr(x, "shouldPack") and x.shouldPack])
         
     def getType(self):
         """Returns L{consts.NET_METADATA_STREAMS}."""
@@ -1130,8 +1131,9 @@ class NetMetaDataStreams(list):
             streamEntry.size.value = readDataInstance.readDword()
             streamEntry.name.value = readDataInstance.readAlignedString()
             
-            streams.append(streamEntry)
-            
+            #streams.append(streamEntry)
+            streams.update({ i: streamEntry, streamEntry.name.value: streamEntry })
+
         return streams
 
 class NetMetaDataTableHeader(baseclasses.BaseStructClass):
@@ -1196,7 +1198,7 @@ class NetMetaDataTables(baseclasses.BaseStructClass):
         return consts.NET_METADATA_TABLES
         
     @staticmethod
-    def parse(readDataInstance):
+    def parse(readDataInstance, netMetaDataStreams):
         """
         Returns a new L{NetMetaDataTables} object.
         
@@ -1207,7 +1209,124 @@ class NetMetaDataTables(baseclasses.BaseStructClass):
         @return: A new L{NetMetaDataTables} object.
         """
         dt = NetMetaDataTables()
-        
         dt.netMetaDataTableHeader = NetMetaDataTableHeader.parse(readDataInstance)
-        dt.tables = readDataInstance.read(len(readDataInstance))
+        dt.tables = {}
+
+        metadataTableDefinitions = dotnet.MetadataTableDefinitions(dt, netMetaDataStreams)
+
+        for i in range(64):
+            dt.tables[i] = { "rows": 0 }
+            if dt.netMetaDataTableHeader.maskValid.value >> i & 1:
+                dt.tables[i]["rows"] = readDataInstance.readDword()
+            if i in dotnet.MetadataTableNames:
+                dt.tables[dotnet.MetadataTableNames[i]] = dt.tables[i]
+
+        for i in range(64):
+            dt.tables[i]["data"] = []
+            for j in range(dt.tables[i]["rows"]):
+                #print("Parsing {0} row #{1}".format(dotnet.MetadataTableNames[i], j))
+                # ("TypeDef", "Field", "MethodDef", "Param", "MemberRef")
+                row = None
+                if i in metadataTableDefinitions:
+                    row = readDataInstance.readFields(metadataTableDefinitions[i])
+                dt.tables[i]["data"].append(row)
+
+        for i in range(64):
+            if i in dotnet.MetadataTableNames:
+                dt.tables[dotnet.MetadataTableNames[i]] = dt.tables[i]["data"]
+            dt.tables[i] = dt.tables[i]["data"]
+
         return dt
+
+class NetResources(baseclasses.BaseStructClass):
+    """NetResources object."""
+    def __init__(self,  shouldPack = True):
+        """
+        NetResources object.
+
+        @todo: Parse every resource in this struct and store them in the C{self.resources} attribute.
+        """
+        baseclasses.BaseStructClass.__init__(self,  shouldPack)
+
+        self.signature = datatypes.DWORD(0)
+        self.readerCount = datatypes.DWORD(0)
+        self.readerTypeLength = datatypes.DWORD(0)
+        self.version = datatypes.DWORD(0)
+        self.resourceCount = datatypes.DWORD(0)
+        self.resourceTypeCount = datatypes.DWORD(0)
+        self.resourceTypes = None
+        self.resourceHashes = None
+        self.resourceNameOffsets = None
+        self.dataSectionOffset = datatypes.DWORD(0)
+        self.resourceNames = None
+        self.resourceOffsets = None
+        self.info = None
+
+        self._attrsList = ["resources"]
+
+    def __str__(self):
+        return str(self.info)
+
+    def __repr__(self):
+        return repr(self.info)
+
+    def getType(self):
+        """Returns L{consts.NET_RESOURCES}."""
+        return consts.NET_RESOURCES
+
+    @staticmethod
+    def parse(readDataInstance):
+        """
+        Returns a new L{NetResources} object.
+
+        @type readDataInstance: L{ReadData}
+        @param readDataInstance: A L{ReadData} object with data to be parsed as a L{NetResources} object.
+
+        @rtype: L{NetResources}
+        @return: A new L{NetResources} object.
+        """
+        r = NetResources()
+
+        r.signature = readDataInstance.readDword()
+        if r.signature != 0xbeefcace:
+            return r
+
+        r.readerCount = readDataInstance.readDword()
+        r.readerTypeLength = readDataInstance.readDword()
+        r.readerType = utils.ReadData(readDataInstance.read(r.readerTypeLength)).readDotNetBlob()
+        r.version = readDataInstance.readDword()
+        r.resourceCount = readDataInstance.readDword()
+        r.resourceTypeCount = readDataInstance.readDword()
+
+        r.resourceTypes = []
+        for i in range(r.resourceTypeCount):
+            r.resourceTypes.append(readDataInstance.readDotNetBlob())
+
+        # aligned to 8 bytes
+        readDataInstance.skipBytes(8 - readDataInstance.tell() & 0x7)
+
+        r.resourceHashes = []
+        for i in range(r.resourceCount):
+            r.resourceHashes.append(readDataInstance.readDword())
+
+        r.resourceNameOffsets = []
+        for i in range(r.resourceCount):
+            r.resourceNameOffsets.append(readDataInstance.readDword())
+
+        r.dataSectionOffset = readDataInstance.readDword()
+
+        r.resourceNames = []
+        r.resourceOffsets = []
+        base = readDataInstance.tell()
+        for i in range(r.resourceCount):
+            readDataInstance.setOffset(base + r.resourceNameOffsets[i])
+            r.resourceNames.append(readDataInstance.readDotNetUnicodeString())
+            r.resourceOffsets.append(readDataInstance.readDword())
+
+        r.info = {}
+        for i in range(r.resourceCount):
+            readDataInstance.setOffset(r.dataSectionOffset + r.resourceOffsets[i])
+            r.info[i] = readDataInstance.read(len(readDataInstance))[:16]
+            r.info[r.resourceNames[i]] = r.info[i]
+
+        return r

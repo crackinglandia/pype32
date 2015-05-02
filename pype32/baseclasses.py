@@ -44,18 +44,18 @@ class BaseStructClass(object):
         """
         self.shouldPack = shouldPack
         self._attrsList = []
-        
+
     def __str__(self):
         s = ""
         for i in self._attrsList:
             attr = getattr(self,  i)
-            if attr.shouldPack:
+            if hasattr(attr, "shouldPack") and attr.shouldPack:
                 s += str(attr)
         return s
         
     def __len__(self):
         return len(str(self))
-            
+
     def sizeof(self):
         return len(self)
         

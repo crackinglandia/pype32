@@ -47,7 +47,7 @@ __all__ = [
            "WORD",  
            "DWORD",  
            "QWORD", 
-           "Array", 
+           "Array",
            ]
 
 import utils
@@ -62,6 +62,7 @@ TYPE_WORD = 0xCAFECAFE
 TYPE_BYTE = 0xC00FEE
 TYPE_ARRAY = 0xFECA
 UNKNOWN_ARRAY_TYPE = 0xFFFF
+TYPE_STRING_HEAP_INDEX = 0x1000
 
 class String(object):
     """String object."""
@@ -333,4 +334,3 @@ class QWORD(DataTypeBaseClass):
         @return: A new L{QWORD} object.
         """
         return QWORD(readDataInstance.readQword())
-        
