@@ -3,6 +3,17 @@ What's pype32? <img src="http://goo.gl/jrf7j8" align="right" height="150" style=
 
 Yet another Python library to read and write [PE/PE+](http://es.wikipedia.org/wiki/Portable_Executable) files.
 
+Installation
+======
+
+Using **pip**: just type **pip install --pre pype32**
+
+Download
+======
+
+You can download the current release from https://github.com/crackinglandia/pype32/releases
+
+
 Usage
 ======
 
