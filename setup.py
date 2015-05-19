@@ -90,10 +90,13 @@ metadata = {
     # Metadata
     'name'              : 'pype32',
     'version'           : '0.1-alpha4',
-    'description'       : 'PE/PE+ library',
+    'description'       : 'Yet another Python library to read and write PE/PE+ files.',
     'long_description'  : long_description,
     'author'            : 'Nahuel Riva',
     'author_email'      : 'crackinglandia'+chr(64)+'gmail'+chr(0x2e)+'com',
+    'url'               : 'https://github.com/crackinglandia/pype32', 
+    'keywords'          : ['pecoff', 'x86', 'x64', '.net', 'parser'],
+    'download_url'      : 'https://github.com/crackinglandia/pype32/tarball/v0.1-alpha4',
     }
 
 # Execute the setup script
