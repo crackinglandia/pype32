@@ -986,34 +986,34 @@ class NetDirectory(baseclasses.BaseStructClass):
         
         nd.metaData.rva.value = readDataInstance.readDword()
         nd.metaData.size.value = readDataInstance.readDword()
-        nd.metaData.name.value = datatypes.String("MetaData")
+        nd.metaData.name.value = "MetaData"
         
         nd.flags.value = readDataInstance.readDword()
         nd.entryPointToken.value = readDataInstance.readDword()
         
         nd.resources.rva.value = readDataInstance.readDword()
         nd.resources.size.value = readDataInstance.readDword()
-        nd.resources.name.value = datatypes.String("Resources")
+        nd.resources.name.value = "Resources"
         
         nd.strongNameSignature.rva.value = readDataInstance.readDword()
         nd.strongNameSignature.size.value = readDataInstance.readDword()
-        nd.strongNameSignature.name.value = datatypes.String("StrongNameSignature")
+        nd.strongNameSignature.name.value = "StrongNameSignature"
         
         nd.codeManagerTable.rva.value = readDataInstance.readDword()
         nd.codeManagerTable.size.value = readDataInstance.readDword()
-        nd.codeManagerTable.name.value = datatypes.String("CodeManagerTable")
+        nd.codeManagerTable.name.value = "CodeManagerTable"
         
         nd.vTableFixups.rva.value = readDataInstance.readDword()
         nd.vTableFixups.size.value = readDataInstance.readDword()
-        nd.vTableFixups.name.value = datatypes.String("VTableFixups")
+        nd.vTableFixups.name.value = "VTableFixups"
         
         nd.exportAddressTableJumps.rva.value = readDataInstance.readDword()
         nd.exportAddressTableJumps.size.value = readDataInstance.readDword()
-        nd.exportAddressTableJumps.name.value = datatypes.String("ExportAddressTableJumps")
+        nd.exportAddressTableJumps.name.value = "ExportAddressTableJumps"
         
         nd.managedNativeHeader.rva.value = readDataInstance.readDword()
         nd.managedNativeHeader.size.value = readDataInstance.readDword()
-        nd.managedNativeHeader.name.value = datatypes.String("ManagedNativeHeader")
+        nd.managedNativeHeader.name.value = "ManagedNativeHeader"
         
         return nd
         
@@ -1100,9 +1100,15 @@ class NetMetaDataStreams(dict):
     """NetMetaDataStreams object."""
     def __init__(self,  shouldPack = True):
         self.shouldPack = shouldPack
-        
+
     def __str__(self):
         return "".join([str(x) for x in self if hasattr(x, "shouldPack") and x.shouldPack])
+
+    def getByNumber(self, number):
+        return self.get(name)
+
+    def getByName(self, name):
+        return self.get(name)
         
     def getType(self):
         """Returns L{consts.NET_METADATA_STREAMS}."""
@@ -1214,24 +1220,22 @@ class NetMetaDataTables(baseclasses.BaseStructClass):
 
         metadataTableDefinitions = dotnet.MetadataTableDefinitions(dt, netMetaDataStreams)
 
-        for i in range(64):
+        for i in xrange(64):
             dt.tables[i] = { "rows": 0 }
             if dt.netMetaDataTableHeader.maskValid.value >> i & 1:
                 dt.tables[i]["rows"] = readDataInstance.readDword()
             if i in dotnet.MetadataTableNames:
                 dt.tables[dotnet.MetadataTableNames[i]] = dt.tables[i]
 
-        for i in range(64):
+        for i in xrange(64):
             dt.tables[i]["data"] = []
             for j in range(dt.tables[i]["rows"]):
-                #print("Parsing {0} row #{1}".format(dotnet.MetadataTableNames[i], j))
-                # ("TypeDef", "Field", "MethodDef", "Param", "MemberRef")
                 row = None
                 if i in metadataTableDefinitions:
                     row = readDataInstance.readFields(metadataTableDefinitions[i])
                 dt.tables[i]["data"].append(row)
 
-        for i in range(64):
+        for i in xrange(64):
             if i in dotnet.MetadataTableNames:
                 dt.tables[dotnet.MetadataTableNames[i]] = dt.tables[i]["data"]
             dt.tables[i] = dt.tables[i]["data"]
@@ -1299,18 +1303,18 @@ class NetResources(baseclasses.BaseStructClass):
         r.resourceTypeCount = readDataInstance.readDword()
 
         r.resourceTypes = []
-        for i in range(r.resourceTypeCount):
+        for i in xrange(r.resourceTypeCount):
             r.resourceTypes.append(readDataInstance.readDotNetBlob())
 
         # aligned to 8 bytes
         readDataInstance.skipBytes(8 - readDataInstance.tell() & 0x7)
 
         r.resourceHashes = []
-        for i in range(r.resourceCount):
+        for i in xrange(r.resourceCount):
             r.resourceHashes.append(readDataInstance.readDword())
 
         r.resourceNameOffsets = []
-        for i in range(r.resourceCount):
+        for i in xrange(r.resourceCount):
             r.resourceNameOffsets.append(readDataInstance.readDword())
 
         r.dataSectionOffset = readDataInstance.readDword()
@@ -1318,13 +1322,13 @@ class NetResources(baseclasses.BaseStructClass):
         r.resourceNames = []
         r.resourceOffsets = []
         base = readDataInstance.tell()
-        for i in range(r.resourceCount):
+        for i in xrange(r.resourceCount):
             readDataInstance.setOffset(base + r.resourceNameOffsets[i])
             r.resourceNames.append(readDataInstance.readDotNetUnicodeString())
             r.resourceOffsets.append(readDataInstance.readDword())
 
         r.info = {}
-        for i in range(r.resourceCount):
+        for i in xrange(r.resourceCount):
             readDataInstance.setOffset(r.dataSectionOffset + r.resourceOffsets[i])
             r.info[i] = readDataInstance.read(len(readDataInstance))[:16]
             r.info[r.resourceNames[i]] = r.info[i]

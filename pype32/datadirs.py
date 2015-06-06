@@ -71,6 +71,9 @@ class Directory(object):
 
     def __len__(self):
         return len(str(self))
+
+    def __dir__(self):
+        return sorted(self.__dict__.keys())
         
     @staticmethod
     def parse(readDataInstance):
