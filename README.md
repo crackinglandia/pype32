@@ -19,7 +19,7 @@ Usage
 
 ```python
 >>> import pype32
->>> pe = pype32.PE(r"C:\Windows\notepad.exe")
+>>> p = pype32.PE(r"C:\Windows\notepad.exe")
 >>> p.sectionHeaders
 [<pype32.SectionHeader object at 0x01A802F0>, <pype32.SectionHeader object at 0x01A805F0>, <pype32.SectionHeader object at 0x01A803B0>, <pype32.SectionHeader object at 0x01A80730>]
 >>> len(p.sectionHeaders)
