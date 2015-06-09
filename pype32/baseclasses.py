@@ -44,18 +44,21 @@ class BaseStructClass(object):
         """
         self.shouldPack = shouldPack
         self._attrsList = []
-        
+
     def __str__(self):
         s = ""
         for i in self._attrsList:
             attr = getattr(self,  i)
-            if attr.shouldPack:
+            if hasattr(attr, "shouldPack") and attr.shouldPack:
                 s += str(attr)
         return s
         
     def __len__(self):
         return len(str(self))
-            
+
+    def __dir__(self):
+        return sorted(self._attrsList or self.__dict__.keys())
+
     def sizeof(self):
         return len(self)
         
@@ -101,6 +104,9 @@ class DataTypeBaseClass(object):
         self.endianness = endianness
         self.signed = signed
         self.shouldPack = shouldPack
+
+    def __dir__(self):
+        return sorted(self.__dict__.keys())
 
     def __eq__(self, other):
         result = None

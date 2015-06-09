@@ -479,8 +479,8 @@ class PE(object):
             self.ntHeaders.optionalHeader = OptionalHeader64.parse(readDataInstance)
             
         self.sectionHeaders = SectionHeaders.parse(readDataInstance,  self.ntHeaders.fileHeader.numberOfSections.value)
-        
-        # as padding is possible between the last section header and the begenning of the first section
+
+        # as padding is possible between the last section header and the beginning of the first section
         # we must adjust the offset in readDataInstance to point to the first byte of the first section.
         readDataInstance.setOffset(self.sectionHeaders[0].pointerToRawData.value)
         
@@ -1360,37 +1360,83 @@ class PE(object):
         @rtype: L{NETDirectory}
         @return: A new L{NETDirectory} object.
         """        
-        if rva and size:
-            # create a NETDirectory class to hold the data
-            netDirectoryClass = directories.NETDirectory()
-            
-            # parse the .NET Directory
-            netDir = directories.NetDirectory.parse(utils.ReadData(self.getDataAtRva(rva,  size)))
-            
-            netDirectoryClass.directory = netDir
-            
-            # get the MetaData RVA and Size
-            mdhRva = netDir.metaData.rva.value
-            mdhSize = netDir.metaData.size.value
-            
-            # read all the MetaData
-            rd = utils.ReadData(self.getDataAtRva(mdhRva,  mdhSize))
-            
-            # parse the MetaData headers
-            netDirectoryClass.netMetaDataHeader = directories.NetMetaDataHeader.parse(rd)
-            
-            # parse the NET metadata streams
-            numberOfStreams = netDirectoryClass.netMetaDataHeader.numberOfStreams.value
-            netDirectoryClass.netMetaDataStreams = directories.NetMetaDataStreams.parse(rd,  numberOfStreams)
-            
-            for i in range(numberOfStreams):
-                name = netDirectoryClass.netMetaDataStreams[i].name.value
-                rd.setOffset(netDirectoryClass.netMetaDataStreams[i].offset.value)
-                if name.find("#~") >= 0:
-                    netDirectoryClass.netMetaDataStreams[i].info = directories.NetMetaDataTables.parse(utils.ReadData(rd.read(netDirectoryClass.netMetaDataStreams[i].size.value)))
-                else:
-                    netDirectoryClass.netMetaDataStreams[i].info = rd.read(netDirectoryClass.netMetaDataStreams[i].size.value)
-            
+        if not rva or not size:
+            return None
+
+        # create a NETDirectory class to hold the data
+        netDirectoryClass = directories.NETDirectory()
+
+        # parse the .NET Directory
+        netDir = directories.NetDirectory.parse(utils.ReadData(self.getDataAtRva(rva,  size)))
+
+        netDirectoryClass.directory = netDir
+
+        # get the MetaData RVA and Size
+        mdhRva = netDir.metaData.rva.value
+        mdhSize = netDir.metaData.size.value
+
+        # read all the MetaData
+        rd = utils.ReadData(self.getDataAtRva(mdhRva, mdhSize))
+
+        # parse the MetaData headers
+        netDirectoryClass.netMetaDataHeader = directories.NetMetaDataHeader.parse(rd)
+
+        # parse the NET metadata streams
+        numberOfStreams = netDirectoryClass.netMetaDataHeader.numberOfStreams.value
+        netDirectoryClass.netMetaDataStreams = directories.NetMetaDataStreams.parse(rd, numberOfStreams)
+
+        for i in range(numberOfStreams):
+            stream = netDirectoryClass.netMetaDataStreams[i]
+            name = stream.name.value
+            rd.setOffset(stream.offset.value)
+            rd2 = utils.ReadData(rd.read(stream.size.value))
+            stream.info = []
+            if name == "#~":
+                stream.info = rd2
+            if name == "#Strings":
+                while len(rd2) > 0:
+                    offset = rd2.tell()
+                    stream.info.append({ offset: rd2.readDotNetString() })
+            elif name == "#US":
+                while len(rd2) > 0:
+                    offset = rd2.tell()
+                    stream.info.append({ offset: rd2.readDotNetUnicodeString() })
+            elif name == "#GUID":
+                while len(rd2) > 0:
+                    offset = rd2.tell()
+                    stream.info.append({ offset: rd2.readDotNetGuid() })
+            elif name == "#Blob":
+                while len(rd2) > 0:
+                    offset = rd2.tell()
+                    stream.info.append({ offset: rd2.readDotNetBlob() })
+
+        for i in range(numberOfStreams):
+            stream = netDirectoryClass.netMetaDataStreams[i]
+            name = stream.name.value
+            if name == "#~":
+                stream.info = directories.NetMetaDataTables.parse(stream.info, netDirectoryClass.netMetaDataStreams)
+
+        # parse .NET resources
+        # get the Resources RVA and Size
+        resRva = netDir.resources.rva.value
+        resSize = netDir.resources.size.value
+
+        # read all the MetaData
+        rd = utils.ReadData(self.getDataAtRva(resRva, resSize))
+
+        resources = []
+
+        for i in netDirectoryClass.netMetaDataStreams["#~"].info.tables["ManifestResource"]:
+            offset = i["offset"]
+            rd.setOffset(offset)
+            size = rd.readDword()
+            data = rd.read(size)
+            if data[:4] == "\xce\xca\xef\xbe":
+                data = directories.NetResources.parse(utils.ReadData(data))
+            resources.append({ "name": i["name"], "offset": hex(offset), "size": hex(size), "data": data })
+
+        netDirectoryClass.directory.resources.info = resources
+
         return netDirectoryClass
     
     def getMd5(self):
@@ -1453,6 +1499,58 @@ class PE(object):
         else:
             print "WARNING: fastLoad parameter was used to load the PE. Data directories are not parsed when using this options. Please, use fastLoad = False."
         return retval
+
+    def getNetMetadataToken(self, token):
+        dnh = self.ntHeaders.optionalHeader.dataDirectory[14].info
+        if not dnh: return None
+        tables = dnh.netMetaDataStreams["#~"].info.tables
+
+        tblid = token >> 24 & 0xff
+        table = tables.get(tblid)
+        if not table:
+            return None
+
+        rowid = (token & 0xffffff) - 1
+        if rowid < 0 or rowid >= len(table):
+            return None
+
+        return table[rowid]
+
+    def getNetEntryPointOffset(self):
+        dnh = self.ntHeaders.optionalHeader.dataDirectory[14].info
+        if not dnh: return None
+        dnh = dnh.directory
+
+        token = self.getNetMetadataToken(dnh.entryPointToken.value)
+
+        if dnh.flags.value & consts.COMIMAGE_FLAGS_NATIVE_ENTRYPOINT:
+            # print("Native entry point.")
+            offset = self.getOffsetFromRva(token)
+        else:
+            # print("Managed entry point.")
+            offset = self.getOffsetFromRva(token["rva"])
+            rd = utils.ReadData(self.getDataAtOffset(offset, 12))
+            flags = rd.readByte()
+            if flags & 0x3 == consts.CORILMETHOD_TINYFORMAT:
+                # print("Tiny header.")
+                codeSize = flags >> 2 & 0x3f
+                flags = flags & 0x3
+                headerSize = 1
+                maxStack = 8
+                localVarSigTok = 0
+            elif flags & 0x3 == consts.CORILMETHOD_FATFORMAT:
+                # print("Fat header.")
+                flags |= rd.readByte() << 8
+                headerSize = 4 * (flags >> 12 & 0xf)
+                flags = flags & 0xfff
+                maxStack = rd.readWord()
+                codeSize = rd.readDword()
+                localVarSigTok = rd.readDword()
+            else:
+                raise Exception("Unknown CLR method header.")
+            offset += headerSize
+
+        return offset
 
 class DosHeader(baseclasses.BaseStructClass):
     """DosHeader object."""
