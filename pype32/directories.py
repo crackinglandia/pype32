@@ -362,9 +362,17 @@ class ImageLoadConfigDirectory(baseclasses.BaseStructClass):
         self.SEHandlerTable = datatypes.DWORD() # VA
         self.SEHandlerCount = datatypes.DWORD()
 
+        # Fields for Control Flow Guard
+        self.GuardCFCheckFunctionPointer = datatypes.DWORD() # VA
+        self.Reserved2 = datatypes.DWORD()
+        self.GuardCFFunctionTable = datatypes.DWORD() # VA
+        self.GuardCFFunctionCount = datatypes.DWORD()
+        self.GuardFlags = datatypes.DWORD()
+
         self._attrsList = ["size", "timeDateStamp", "majorVersion", "minorVersion", "globalFlagsClear", "globalFlagsSet", "criticalSectionDefaultTimeout", "deCommitFreeBlockThreshold",\
                             "deCommitTotalFreeThreshold", "lockPrefixTable", "maximumAllocationSize", "virtualMemoryThreshold", "processHeapFlags", "processAffinityMask", "csdVersion",\
-                            "reserved1", "editList", "securityCookie", "SEHandlerTable","SEHandlerCount"]
+                            "reserved1", "editList", "securityCookie", "SEHandlerTable","SEHandlerCount", "GuardCFCheckFunctionPointer", "Reserved2", "GuardCFFunctionTable",\
+                            "GuardCFFunctionCount", "GuardFlags"]
 
     def getType(self):
         """Returns L{consts.IMAGE_LOAD_CONFIG_DIRECTORY32}."""
@@ -403,6 +411,13 @@ class ImageLoadConfigDirectory(baseclasses.BaseStructClass):
         configDir.securityCookie.value = readDataInstance.readDword() # VA
         configDir.SEHandlerTable.value = readDataInstance.readDword() # VA
         configDir.SEHandlerCount.value = readDataInstance.readDword()
+
+        # Fields for Control Flow Guard
+        configDir.GuardCFCheckFunctionPointer.value = readDataInstance.readDword() # VA
+        configDir.Reserved2.value = readDataInstance.readDword()
+        configDir.GuardCFFunctionTable.value = readDataInstance.readDword() # VA
+        configDir.GuardCFFunctionCount.value = readDataInstance.readDword()
+        configDir.GuardFlags.value = readDataInstance.readDword()
         return configDir
 
 class ImageLoadConfigDirectory64(baseclasses.BaseStructClass):
@@ -437,9 +452,17 @@ class ImageLoadConfigDirectory64(baseclasses.BaseStructClass):
         self.SEHandlerTable = datatypes.QWORD()
         self.SEHandlerCount = datatypes.QWORD()
 
+        # Fields for Control Flow Guard
+        self.GuardCFCheckFunctionPointer = datatypes.QWORD() # VA
+        self.Reserved2 = datatypes.QWORD()
+        self.GuardCFFunctionTable = datatypes.QWORD() # VA
+        self.GuardCFFunctionCount = datatypes.QWORD()
+        self.GuardFlags = datatypes.QWORD()
+
         self._attrsList = ["size", "timeDateStamp", "majorVersion", "minorVersion", "globalFlagsClear", "globalFlagsSet", "criticalSectionDefaultTimeout", "deCommitFreeBlockThreshold",\
                             "deCommitTotalFreeThreshold", "lockPrefixTable", "maximumAllocationSize", "virtualMemoryThreshold", "processAffinityMask", "processHeapFlags", "cdsVersion",\
-                            "reserved1", "editList", "securityCookie", "SEHandlerTable", "SEHandlerCount",]
+                            "reserved1", "editList", "securityCookie", "SEHandlerTable", "SEHandlerCount", "GuardCFCheckFunctionPointer", "Reserved2", "GuardCFFunctionTable",\
+                            "GuardCFFunctionCount", "GuardFlags"]
 
 
     def getType(self):
@@ -479,6 +502,13 @@ class ImageLoadConfigDirectory64(baseclasses.BaseStructClass):
         configDir.securityCookie.value = readDataInstance.readQword()
         configDir.SEHandlerTable.value = readDataInstance.readQword()
         configDir.SEHandlerCount.value = readDataInstance.readQword()
+
+        # Fields for Control Flow Guard
+        configDir.GuardCFCheckFunctionPointer.value = readDataInstance.readQword() # VA
+        configDir.Reserved2.value = readDataInstance.readQword()
+        configDir.GuardCFFunctionTable.value = readDataInstance.readQword() # VA
+        configDir.GuardCFFunctionCount.value = readDataInstance.readQword()
+        configDir.GuardFlags.value = readDataInstance.readQword()
         return configDir
 
 class ImageBaseRelocationEntry(baseclasses.BaseStructClass):

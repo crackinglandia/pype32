@@ -879,6 +879,21 @@ class PE(object):
         """
         return self.ntHeaders.optionalHeader.dllCharacteristics.value & consts.IMAGE_DLL_CHARACTERISTICS_NX_COMPAT == consts.IMAGE_DLL_CHARACTERISTICS_NX_COMPAT
 
+        # http://www.powerofcommunity.net/poc2014/mj0011.pdf
+        # https://github.com/DarthTon/Blackbone/blob/master/src/BlackBoneDrv/PEStructs.h
+        # http://static1.1.sqspcdn.com/static/f/336849/25005618/1402230025800/ep12-FullDump.txt?token=13GN1EahQqnHjM%2Ft3hnDCfQ03iU%3D
+        # http://www.virtualbox.org/svn/vbox/trunk/src/VBox/Runtime/include/internal/ldrPE.h
+    def isCFGEnabled(self):
+        """
+        Determines if the current L{PE} instance has CFG (Control Flow Guard) flag enabled.
+        @see: U{http://blogs.msdn.com/b/vcblog/archive/2014/12/08/visual-studio-2015-preview-work-in-progress-security-feature.aspx}
+        @see: U{https://msdn.microsoft.com/en-us/library/dn919635%%28v=vs.140%%29.aspx}
+
+        @rtype: bool
+        @return: Returns C{True} if the current L{PE} instance has the CFG flag enabled. Otherwise, return C{False}.
+        """
+        return self.ntHeaders.optionalHeader.dllCharacteristics.value & consts.IMAGE_DLL_CHARACTERISTICS_GUARD_CF == consts.IMAGE_DLL_CHARACTERISTICS_GUARD_CF
+
     def isASLREnabled(self):
         """
         Determines if the current L{PE} instance has the DYNAMICBASE (Use address space layout randomization) flag enabled.
