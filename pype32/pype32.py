@@ -1406,21 +1406,21 @@ class PE(object):
             rd.setOffset(stream.offset.value)
             rd2 = utils.ReadData(rd.read(stream.size.value))
             stream.info = []
-            if name == "#~":
+            if name == "#~" or i == 0:
                 stream.info = rd2
-            if name == "#Strings":
+            elif name == "#Strings" or i == 1:
                 while len(rd2) > 0:
                     offset = rd2.tell()
                     stream.info.append({ offset: rd2.readDotNetString() })
-            elif name == "#US":
+            elif name == "#US" or i == 2:
                 while len(rd2) > 0:
                     offset = rd2.tell()
                     stream.info.append({ offset: rd2.readDotNetUnicodeString() })
-            elif name == "#GUID":
+            elif name == "#GUID" or i == 3:
                 while len(rd2) > 0:
                     offset = rd2.tell()
                     stream.info.append({ offset: rd2.readDotNetGuid() })
-            elif name == "#Blob":
+            elif name == "#Blob" or i == 4:
                 while len(rd2) > 0:
                     offset = rd2.tell()
                     stream.info.append({ offset: rd2.readDotNetBlob() })
@@ -1428,7 +1428,7 @@ class PE(object):
         for i in range(numberOfStreams):
             stream = netDirectoryClass.netMetaDataStreams[i]
             name = stream.name.value
-            if name == "#~":
+            if name == "#~" or i == 0:
                 stream.info = directories.NetMetaDataTables.parse(stream.info, netDirectoryClass.netMetaDataStreams)
 
         # parse .NET resources
@@ -1441,14 +1441,14 @@ class PE(object):
 
         resources = []
 
-        for i in netDirectoryClass.netMetaDataStreams["#~"].info.tables["ManifestResource"]:
+        for i in netDirectoryClass.netMetaDataStreams[0].info.tables["ManifestResource"]:
             offset = i["offset"]
             rd.setOffset(offset)
             size = rd.readDword()
             data = rd.read(size)
             if data[:4] == "\xce\xca\xef\xbe":
                 data = directories.NetResources.parse(utils.ReadData(data))
-            resources.append({ "name": i["name"], "offset": hex(offset), "size": hex(size), "data": data })
+            resources.append({ "name": i["name"], "offset": offset + 4, "size": size, "data": data })
 
         netDirectoryClass.directory.resources.info = resources
 
@@ -1518,7 +1518,7 @@ class PE(object):
     def getNetMetadataToken(self, token):
         dnh = self.ntHeaders.optionalHeader.dataDirectory[14].info
         if not dnh: return None
-        tables = dnh.netMetaDataStreams["#~"].info.tables
+        tables = dnh.netMetaDataStreams[0].info.tables
 
         tblid = token >> 24 & 0xff
         table = tables.get(tblid)

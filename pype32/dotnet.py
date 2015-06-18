@@ -350,11 +350,11 @@ MetadataTableNames = {
     0x00: "Module",
     0x01: "TypeRef",
     0x02: "TypeDef",
-    0x03: None,
+    0x03: "FieldPtr",
     0x04: "Field",
-    0x05: None,
+    0x05: "MethodPtr",
     0x06: "MethodDef",
-    0x07: None,
+    0x07: "ParamPtr",
     0x08: "Param",
     0x09: "InterfaceImpl",
     0x0a: "MemberRef",
@@ -366,10 +366,10 @@ MetadataTableNames = {
     0x10: "FieldLayout",
     0x11: "StandAloneSig",
     0x12: "EventMap",
-    0x13: None,
+    0x13: "EventPtr",
     0x14: "Event",
     0x15: "PropertyMap",
-    0x16: None,
+    0x16: "PropertyPtr",
     0x17: "Property",
     0x18: "MethodSemantics",
     0x19: "MethodImpl",
@@ -436,13 +436,17 @@ def MetadataTableDefinitions(dt, netMetaDataStreams):
             { "fieldList": FieldIndex(dt, netMetaDataStreams) },
             { "methodList": MethodDefIndex(dt, netMetaDataStreams) },
         ],
-        0x03: None,
+        0x03: [
+            { "ref": datatypes.WORD() },
+        ],
         0x04: [
             { "flags": datatypes.WORD() },
             { "name": StringHeapIndex(dt, netMetaDataStreams) },
             { "signature": BlobHeapIndex(dt, netMetaDataStreams) },
         ],
-        0x05: None,
+        0x05: [
+            { "ref": datatypes.WORD() },
+        ],
         0x06: [
             { "rva": datatypes.DWORD() },
             { "implFlags": datatypes.WORD() },
@@ -451,7 +455,9 @@ def MetadataTableDefinitions(dt, netMetaDataStreams):
             { "signature": BlobHeapIndex(dt, netMetaDataStreams) },
             { "paramList": ParamIndex(dt, netMetaDataStreams) },
         ],
-        0x07: None,
+        0x07: [
+            { "ref": datatypes.WORD() },
+        ],
         0x08: [
             { "flags": datatypes.WORD() },
             { "sequence": datatypes.WORD() },
@@ -501,7 +507,9 @@ def MetadataTableDefinitions(dt, netMetaDataStreams):
             { "parent": TypeDefIndex(dt, netMetaDataStreams) },
             { "eventList": EventIndex(dt, netMetaDataStreams) },
         ],
-        0x13: None,
+        0x13: [
+            { "ref": datatypes.WORD() },
+        ],
         0x14: [
             { "eventFlags": datatypes.WORD() },
             { "name": StringHeapIndex(dt, netMetaDataStreams) },
@@ -511,7 +519,9 @@ def MetadataTableDefinitions(dt, netMetaDataStreams):
             { "parent": TypeDefIndex(dt, netMetaDataStreams) },
             { "propertyList": PropertyIndex(dt, netMetaDataStreams) },
         ],
-        0x16: None,
+        0x16: [
+            { "ref": datatypes.WORD() },
+        ],
         0x17: [
             { "flags": datatypes.WORD() },
             { "name": StringHeapIndex(dt, netMetaDataStreams) },
