@@ -1296,7 +1296,7 @@ class NetResources(baseclasses.BaseStructClass):
         self.resourceOffsets = None
         self.info = None
 
-        self._attrsList = ["resources"]
+        self._attrsList = ["signature", "readerCount", "readerTypeLength", "version", "resourceCount", "resourceTypeCount", "resourceTypes", "resourceHashes", "resourceNameOffsets", "dataSectionOffset", "resourceNames", "resourceOffets", "info"]
 
     def __str__(self):
         return str(self.info)
@@ -1360,7 +1360,7 @@ class NetResources(baseclasses.BaseStructClass):
         r.info = {}
         for i in xrange(r.resourceCount):
             readDataInstance.setOffset(r.dataSectionOffset + r.resourceOffsets[i])
-            r.info[i] = readDataInstance.read(len(readDataInstance))[:16]
+            r.info[i] = readDataInstance.read(len(readDataInstance))
             r.info[r.resourceNames[i]] = r.info[i]
 
         return r
