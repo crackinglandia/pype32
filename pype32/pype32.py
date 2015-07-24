@@ -950,7 +950,10 @@ class PE(object):
         for directory in directories:
             dir = dataDirectoryInstance[directory[0]]
             if dir.rva.value and dir.size.value:
-                dataDirectoryInstance[directory[0]].info = directory[1](dir.rva.value, dir.size.value, magic)
+                try:
+                    dataDirectoryInstance[directory[0]].info = directory[1](dir.rva.value, dir.size.value, magic)
+                except Exception as e:
+                    print excep.PEWarning("Error parsing PE directory: %s." % directory[1].__name__.replace("_parse", ""))
 
     def _parseResourceDirectory(self, rva, size, magic = consts.PE32):
         """
@@ -1155,11 +1158,11 @@ class PE(object):
         addressOfFunctions = iet.addressOfFunctions.value
         
         # populate the auxFunctionRvaArray
-        for i in range(iet.numberOfFunctions.value):
+        for i in xrange(iet.numberOfFunctions.value):
             auxFunctionRvaArray.append(self.getDwordAtRva(addressOfFunctions).value)
             addressOfFunctions += datatypes.DWORD().sizeof()
             
-        for i in range(numberOfNames):
+        for i in xrange(numberOfNames):
             
             nameRva = self.getDwordAtRva(addressOfNames).value
             nameOrdinal = self.getWordAtRva(addressOfNameOrdinals).value
@@ -1184,7 +1187,7 @@ class PE(object):
         #print "export table length: %d" % len(iet.exportTable)
         
         #print "auxFunctionRvaArray: %r" % auxFunctionRvaArray
-        for i in range(iet.numberOfFunctions.value):
+        for i in xrange(iet.numberOfFunctions.value):
             #print "auxFunctionRvaArray[%d]: %x" % (i,  auxFunctionRvaArray[i])
             if auxFunctionRvaArray[i] != iet.exportTable[i].functionRva.value:
                 entry = directories.ExportTableEntry()
