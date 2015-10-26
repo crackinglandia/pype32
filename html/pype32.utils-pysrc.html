@@ -1,0 +1,583 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>pype32.utils</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pype32-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="pype32-module.html">Package&nbsp;pype32</a> ::
+        Module&nbsp;utils
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="pype32.utils-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="pype32.utils-module.html" onclick="show_private();">Module pype32.utils</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment">#!/usr/bin/python</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment"># -*- coding: utf-8 -*- </tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment"># Copyright (c) 2013, Nahuel Riva </tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment"># All rights reserved. </tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-comment"># Redistribution and use in source and binary forms, with or without </tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-comment"># modification, are permitted provided that the following conditions are met: </tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-comment">#     * Redistributions of source code must retain the above copyright notice, </tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-comment">#       this list of conditions and the following disclaimer. </tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-comment">#     * Redistributions in binary form must reproduce the above copyright </tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-comment">#       notice,this list of conditions and the following disclaimer in the </tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-comment">#       documentation and/or other materials provided with the distribution. </tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-comment">#     * Neither the name of the copyright holder nor the names of its </tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-comment">#       contributors may be used to endorse or promote products derived from </tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-comment">#       this software without specific prior written permission. </tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-comment"># THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" </tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-comment"># AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE </tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-comment"># IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE </tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-comment"># ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE </tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-comment"># LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR </tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-comment"># CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF </tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-comment"># SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS </tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-comment"># INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN </tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt class="py-comment"># CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) </tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"><tt class="py-comment"># ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE </tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"><tt class="py-comment"># POSSIBILITY OF SUCH DAMAGE. </tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"><tt class="py-docstring">Auxiliary classes and functions.</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line"><tt class="py-docstring">@group Read/Write data stream objects:</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line"><tt class="py-docstring">    ReadData, WriteData</tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line"> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"><tt id="link-0" class="py-name" targets="Variable pype32.__revision__=pype32-module.html#__revision__,Variable pype32.baseclasses.__revision__=pype32.baseclasses-module.html#__revision__,Variable pype32.consts.__revision__=pype32.consts-module.html#__revision__,Variable pype32.datadirs.__revision__=pype32.datadirs-module.html#__revision__,Variable pype32.datatypes.__revision__=pype32.datatypes-module.html#__revision__,Variable pype32.directories.__revision__=pype32.directories-module.html#__revision__,Variable pype32.excep.__revision__=pype32.excep-module.html#__revision__,Variable pype32.pype32.__revision__=pype32.pype32-module.html#__revision__,Variable pype32.utils.__revision__=pype32.utils-module.html#__revision__"><a title="pype32.__revision__
+pype32.baseclasses.__revision__
+pype32.consts.__revision__
+pype32.datadirs.__revision__
+pype32.datatypes.__revision__
+pype32.directories.__revision__
+pype32.excep.__revision__
+pype32.pype32.__revision__
+pype32.utils.__revision__" class="py-name" href="#" onclick="return doclink('link-0', '__revision__', 'link-0');">__revision__</a></tt> <tt class="py-op">=</tt> <tt class="py-string">"$Id$"</tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line"> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line"><tt class="py-name">__all__</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line">           <tt class="py-string">"ReadData"</tt><tt class="py-op">,</tt>  </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line">           <tt class="py-string">"WriteData"</tt><tt class="py-op">,</tt>  </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line">           <tt class="py-op">]</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line"> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-1" class="py-name" targets="Module pype32.excep=pype32.excep-module.html"><a title="pype32.excep" class="py-name" href="#" onclick="return doclink('link-1', 'excep', 'link-1');">excep</a></tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line"> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">cStringIO</tt> <tt class="py-keyword">import</tt> <tt class="py-name">StringIO</tt> <tt class="py-keyword">as</tt> <tt class="py-name">cstringio</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">StringIO</tt> <tt class="py-keyword">import</tt> <tt class="py-name">StringIO</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">struct</tt> <tt class="py-keyword">import</tt> <tt class="py-name">pack</tt><tt class="py-op">,</tt> <tt class="py-name">unpack</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">uuid</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line"> </tt>
+<a name="powerOfTwo"></a><div id="powerOfTwo-def"><a name="L52"></a><tt class="py-lineno"> 52</tt> <a class="py-toggle" href="#" id="powerOfTwo-toggle" onclick="return toggle('powerOfTwo');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="pype32.utils-module.html#powerOfTwo">powerOfTwo</a><tt class="py-op">(</tt><tt class="py-param">value</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="powerOfTwo-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="powerOfTwo-expanded"><a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line"><tt class="py-docstring">    Tries to determine if a given value is a power of two.</tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line"><tt class="py-docstring">    </tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line"><tt class="py-docstring">    @type value: int</tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line"><tt class="py-docstring">    @param value: Value to test if it is power of two.</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line"><tt class="py-docstring">       </tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line"><tt class="py-docstring">    @rtype: bool</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line"><tt class="py-docstring">    @return: C{True} if the value is power of two, </tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line"><tt class="py-docstring">        C{False} if it doesn't.</tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">value</tt> <tt class="py-op">!=</tt> <tt class="py-number">0</tt> <tt class="py-keyword">and</tt> <tt class="py-op">(</tt><tt class="py-name">value</tt> <tt class="py-op">&amp;</tt> <tt class="py-op">(</tt><tt class="py-name">value</tt> <tt class="py-op">-</tt> <tt class="py-number">1</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> <tt class="py-op">==</tt> <tt class="py-number">0</tt> </tt>
+</div><a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line"> </tt>
+<a name="allZero"></a><div id="allZero-def"><a name="L65"></a><tt class="py-lineno"> 65</tt> <a class="py-toggle" href="#" id="allZero-toggle" onclick="return toggle('allZero');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="pype32.utils-module.html#allZero">allZero</a><tt class="py-op">(</tt><tt class="py-param">buffer</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="allZero-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="allZero-expanded"><a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line"><tt class="py-docstring">    Tries to determine if a buffer is empty.</tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line"><tt class="py-docstring">    </tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line"><tt class="py-docstring">    @type buffer: str</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line"><tt class="py-docstring">    @param buffer: Buffer to test if it is empty.</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line"><tt class="py-docstring">        </tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line"><tt class="py-docstring">    @rtype: bool</tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line"><tt class="py-docstring">    @return: C{True} if the given buffer is empty, i.e. full of zeros,</tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line"><tt class="py-docstring">        C{False} if it doesn't.</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">    <tt id="link-2" class="py-name" targets="Function pype32.utils.allZero()=pype32.utils-module.html#allZero"><a title="pype32.utils.allZero" class="py-name" href="#" onclick="return doclink('link-2', 'allZero', 'link-2');">allZero</a></tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line">    <tt class="py-keyword">for</tt> <tt class="py-name">byte</tt> <tt class="py-keyword">in</tt> <tt class="py-name">buffer</tt><tt class="py-op">:</tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">byte</tt> <tt class="py-op">!=</tt> <tt class="py-string">"\x00"</tt><tt class="py-op">:</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">            <tt id="link-3" class="py-name"><a title="pype32.utils.allZero" class="py-name" href="#" onclick="return doclink('link-3', 'allZero', 'link-2');">allZero</a></tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">            <tt class="py-keyword">break</tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt id="link-4" class="py-name"><a title="pype32.utils.allZero" class="py-name" href="#" onclick="return doclink('link-4', 'allZero', 'link-2');">allZero</a></tt> </tt>
+</div><a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line"> </tt>
+<a name="WriteData"></a><div id="WriteData-def"><a name="L83"></a><tt class="py-lineno"> 83</tt> <a class="py-toggle" href="#" id="WriteData-toggle" onclick="return toggle('WriteData');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pype32.utils.WriteData-class.html">WriteData</a><tt class="py-op">(</tt><tt class="py-base-class">object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="WriteData-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="WriteData-expanded"><a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">    <tt class="py-docstring">"""Return a WriteData-like stream object for writing."""</tt> </tt>
+<a name="WriteData.__init__"></a><div id="WriteData.__init__-def"><a name="L85"></a><tt class="py-lineno"> 85</tt> <a class="py-toggle" href="#" id="WriteData.__init__-toggle" onclick="return toggle('WriteData.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pype32.utils.WriteData-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">data</tt><tt class="py-op">,</tt> <tt class="py-param">endianness</tt> <tt class="py-op">=</tt> <tt class="py-string">"&lt;"</tt><tt class="py-op">,</tt> <tt class="py-param">signed</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="WriteData.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="WriteData.__init__-expanded"><a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line"><tt class="py-docstring">        @type data: str</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line"><tt class="py-docstring">        @param data: Data to create the L{WriteData} object.</tt> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line"><tt class="py-docstring">        @type endianness: str</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line"><tt class="py-docstring">        @param endianness: (Optional) Indicates the endianness used to write the data. The C{&lt;} indicates little-endian while C{&gt;} indicates big-endian.</tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line"><tt class="py-docstring">        </tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line"><tt class="py-docstring">        @type signed: bool</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line"><tt class="py-docstring">        @param signed: (Optional) If set to C{True} the data will be treated as signed. If set to C{False} it will be treated as unsigned.</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">data</tt> <tt class="py-op">=</tt> <tt class="py-name">StringIO</tt><tt class="py-op">(</tt><tt class="py-name">data</tt><tt class="py-op">)</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">endianness</tt> <tt class="py-op">=</tt> <tt class="py-name">endianness</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">signed</tt> <tt class="py-op">=</tt> <tt class="py-name">signed</tt> </tt>
+</div><a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line">     </tt>
+<a name="WriteData.__len__"></a><div id="WriteData.__len__-def"><a name="L100"></a><tt class="py-lineno">100</tt> <a class="py-toggle" href="#" id="WriteData.__len__-toggle" onclick="return toggle('WriteData.__len__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pype32.utils.WriteData-class.html#__len__">__len__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="WriteData.__len__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="WriteData.__len__-expanded"><a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">data</tt><tt class="py-op">.</tt><tt class="py-name">buf</tt><tt class="py-op">[</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">data</tt><tt class="py-op">.</tt><tt id="link-5" class="py-name" targets="Method pype32.utils.ReadData.tell()=pype32.utils.ReadData-class.html#tell,Method pype32.utils.WriteData.tell()=pype32.utils.WriteData-class.html#tell"><a title="pype32.utils.ReadData.tell
+pype32.utils.WriteData.tell" class="py-name" href="#" onclick="return doclink('link-5', 'tell', 'link-5');">tell</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line">     </tt>
+<a name="WriteData.__str__"></a><div id="WriteData.__str__-def"><a name="L103"></a><tt class="py-lineno">103</tt> <a class="py-toggle" href="#" id="WriteData.__str__-toggle" onclick="return toggle('WriteData.__str__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pype32.utils.WriteData-class.html#__str__">__str__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="WriteData.__str__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="WriteData.__str__-expanded"><a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">data</tt><tt class="py-op">.</tt><tt class="py-name">getvalue</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line">         </tt>
+<a name="WriteData.writeByte"></a><div id="WriteData.writeByte-def"><a name="L106"></a><tt class="py-lineno">106</tt> <a class="py-toggle" href="#" id="WriteData.writeByte-toggle" onclick="return toggle('WriteData.writeByte');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pype32.utils.WriteData-class.html#writeByte">writeByte</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">byte</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="WriteData.writeByte-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="WriteData.writeByte-expanded"><a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line"><tt class="py-docstring">        Writes a byte into the L{WriteData} stream object.</tt> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line"><tt class="py-docstring">        </tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line"><tt class="py-docstring">        @type byte: int</tt> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line"><tt class="py-docstring">        @param byte: Byte value to write into the stream.</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">data</tt><tt class="py-op">.</tt><tt id="link-6" class="py-name" targets="Method pype32.pype32.PE.write()=pype32.pype32.PE-class.html#write,Method pype32.utils.WriteData.write()=pype32.utils.WriteData-class.html#write"><a title="pype32.pype32.PE.write
+pype32.utils.WriteData.write" class="py-name" href="#" onclick="return doclink('link-6', 'write', 'link-6');">write</a></tt><tt class="py-op">(</tt><tt class="py-name">pack</tt><tt class="py-op">(</tt><tt class="py-string">"B"</tt> <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">signed</tt> <tt class="py-keyword">else</tt> <tt class="py-string">"b"</tt><tt class="py-op">,</tt> <tt class="py-name">byte</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line">         </tt>
+<a name="WriteData.writeWord"></a><div id="WriteData.writeWord-def"><a name="L115"></a><tt class="py-lineno">115</tt> <a class="py-toggle" href="#" id="WriteData.writeWord-toggle" onclick="return toggle('WriteData.writeWord');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pype32.utils.WriteData-class.html#writeWord">writeWord</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">word</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="WriteData.writeWord-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="WriteData.writeWord-expanded"><a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line"><tt class="py-docstring">        Writes a word value into the L{WriteData} stream object.</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line"><tt class="py-docstring">        </tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line"><tt class="py-docstring">        @type word: int</tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line"><tt class="py-docstring">        @param word: Word value to write into the stream.</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">data</tt><tt class="py-op">.</tt><tt id="link-7" class="py-name"><a title="pype32.pype32.PE.write
+pype32.utils.WriteData.write" class="py-name" href="#" onclick="return doclink('link-7', 'write', 'link-6');">write</a></tt><tt class="py-op">(</tt><tt class="py-name">pack</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">endianness</tt> <tt class="py-op">+</tt> <tt class="py-op">(</tt><tt class="py-string">"H"</tt> <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">signed</tt> <tt class="py-keyword">else</tt> <tt class="py-string">"h"</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">word</tt><tt class="py-op">)</tt><tt class="py-op">)</tt>  </tt>
+</div><a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line">         </tt>
+<a name="WriteData.writeDword"></a><div id="WriteData.writeDword-def"><a name="L124"></a><tt class="py-lineno">124</tt> <a class="py-toggle" href="#" id="WriteData.writeDword-toggle" onclick="return toggle('WriteData.writeDword');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pype32.utils.WriteData-class.html#writeDword">writeDword</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">dword</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="WriteData.writeDword-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="WriteData.writeDword-expanded"><a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line"><tt class="py-docstring">        Writes a dword value into the L{WriteData} stream object.</tt> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line"><tt class="py-docstring">        </tt> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line"><tt class="py-docstring">        @type dword: int</tt> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line"><tt class="py-docstring">        @param dword: Dword value to write into the stream.</tt> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt>         </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">data</tt><tt class="py-op">.</tt><tt id="link-8" class="py-name"><a title="pype32.pype32.PE.write
+pype32.utils.WriteData.write" class="py-name" href="#" onclick="return doclink('link-8', 'write', 'link-6');">write</a></tt><tt class="py-op">(</tt><tt class="py-name">pack</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">endianness</tt> <tt class="py-op">+</tt> <tt class="py-op">(</tt><tt class="py-string">"L"</tt> <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">signed</tt> <tt class="py-keyword">else</tt> <tt class="py-string">"l"</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">dword</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line">         </tt>
+<a name="WriteData.writeQword"></a><div id="WriteData.writeQword-def"><a name="L133"></a><tt class="py-lineno">133</tt> <a class="py-toggle" href="#" id="WriteData.writeQword-toggle" onclick="return toggle('WriteData.writeQword');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pype32.utils.WriteData-class.html#writeQword">writeQword</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">qword</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="WriteData.writeQword-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="WriteData.writeQword-expanded"><a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line"><tt class="py-docstring">        Writes a qword value into the L{WriteData} stream object.</tt> </tt>
+<a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line"><tt class="py-docstring">        </tt> </tt>
+<a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line"><tt class="py-docstring">        @type qword: int</tt> </tt>
+<a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line"><tt class="py-docstring">        @param qword: Qword value to write into the stream.</tt> </tt>
+<a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">data</tt><tt class="py-op">.</tt><tt id="link-9" class="py-name"><a title="pype32.pype32.PE.write
+pype32.utils.WriteData.write" class="py-name" href="#" onclick="return doclink('link-9', 'write', 'link-6');">write</a></tt><tt class="py-op">(</tt><tt class="py-name">pack</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">endianness</tt> <tt class="py-op">+</tt> <tt class="py-op">(</tt><tt class="py-string">"Q"</tt> <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">signed</tt> <tt class="py-keyword">else</tt> <tt class="py-string">"q"</tt><tt class="py-op">)</tt><tt class="py-op">,</tt>  <tt class="py-name">qword</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line">         </tt>
+<a name="WriteData.write"></a><div id="WriteData.write-def"><a name="L142"></a><tt class="py-lineno">142</tt> <a class="py-toggle" href="#" id="WriteData.write-toggle" onclick="return toggle('WriteData.write');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pype32.utils.WriteData-class.html#write">write</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">dataToWrite</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="WriteData.write-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="WriteData.write-expanded"><a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line"><tt class="py-docstring">        Writes data into the L{WriteData} stream object.</tt> </tt>
+<a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line"><tt class="py-docstring">        </tt> </tt>
+<a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line"><tt class="py-docstring">        @type dataToWrite: str</tt> </tt>
+<a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line"><tt class="py-docstring">        @param dataToWrite: Data to write into the stream.</tt> </tt>
+<a name="L148"></a><tt class="py-lineno">148</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L149"></a><tt class="py-lineno">149</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">data</tt><tt class="py-op">.</tt><tt id="link-10" class="py-name"><a title="pype32.pype32.PE.write
+pype32.utils.WriteData.write" class="py-name" href="#" onclick="return doclink('link-10', 'write', 'link-6');">write</a></tt><tt class="py-op">(</tt><tt class="py-name">dataToWrite</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L150"></a><tt class="py-lineno">150</tt>  <tt class="py-line">     </tt>
+<a name="WriteData.setOffset"></a><div id="WriteData.setOffset-def"><a name="L151"></a><tt class="py-lineno">151</tt> <a class="py-toggle" href="#" id="WriteData.setOffset-toggle" onclick="return toggle('WriteData.setOffset');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pype32.utils.WriteData-class.html#setOffset">setOffset</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">value</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="WriteData.setOffset-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="WriteData.setOffset-expanded"><a name="L152"></a><tt class="py-lineno">152</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L153"></a><tt class="py-lineno">153</tt>  <tt class="py-line"><tt class="py-docstring">        Sets the offset of the L{WriteData} stream object in wich the data is written.</tt> </tt>
+<a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line"><tt class="py-docstring">        </tt> </tt>
+<a name="L155"></a><tt class="py-lineno">155</tt>  <tt class="py-line"><tt class="py-docstring">        @type value: int</tt> </tt>
+<a name="L156"></a><tt class="py-lineno">156</tt>  <tt class="py-line"><tt class="py-docstring">        @param value: Integer value that represent the offset we want to start writing in the L{WriteData} stream.</tt> </tt>
+<a name="L157"></a><tt class="py-lineno">157</tt>  <tt class="py-line"><tt class="py-docstring">            </tt> </tt>
+<a name="L158"></a><tt class="py-lineno">158</tt>  <tt class="py-line"><tt class="py-docstring">        @raise WrongOffsetValueException: The value is beyond the total length of the data. </tt> </tt>
+<a name="L159"></a><tt class="py-lineno">159</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L160"></a><tt class="py-lineno">160</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">value</tt> <tt class="py-op">&gt;=</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">data</tt><tt class="py-op">.</tt><tt class="py-name">getvalue</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L161"></a><tt class="py-lineno">161</tt>  <tt class="py-line">            <tt class="py-keyword">raise</tt> <tt id="link-11" class="py-name"><a title="pype32.excep" class="py-name" href="#" onclick="return doclink('link-11', 'excep', 'link-1');">excep</a></tt><tt class="py-op">.</tt><tt id="link-12" class="py-name" targets="Class pype32.excep.WrongOffsetValueException=pype32.excep.WrongOffsetValueException-class.html"><a title="pype32.excep.WrongOffsetValueException" class="py-name" href="#" onclick="return doclink('link-12', 'WrongOffsetValueException', 'link-12');">WrongOffsetValueException</a></tt><tt class="py-op">(</tt><tt class="py-string">"Wrong offset value. Must be less than %d"</tt> <tt class="py-op">%</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">data</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L162"></a><tt class="py-lineno">162</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">data</tt><tt class="py-op">.</tt><tt class="py-name">seek</tt><tt class="py-op">(</tt><tt class="py-name">value</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L163"></a><tt class="py-lineno">163</tt>  <tt class="py-line">         </tt>
+<a name="WriteData.skipBytes"></a><div id="WriteData.skipBytes-def"><a name="L164"></a><tt class="py-lineno">164</tt> <a class="py-toggle" href="#" id="WriteData.skipBytes-toggle" onclick="return toggle('WriteData.skipBytes');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pype32.utils.WriteData-class.html#skipBytes">skipBytes</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">nroBytes</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="WriteData.skipBytes-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="WriteData.skipBytes-expanded"><a name="L165"></a><tt class="py-lineno">165</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L166"></a><tt class="py-lineno">166</tt>  <tt class="py-line"><tt class="py-docstring">        Skips the specified number as parameter to the current value of the L{WriteData} stream.</tt> </tt>
+<a name="L167"></a><tt class="py-lineno">167</tt>  <tt class="py-line"><tt class="py-docstring">        </tt> </tt>
+<a name="L168"></a><tt class="py-lineno">168</tt>  <tt class="py-line"><tt class="py-docstring">        @type nroBytes: int</tt> </tt>
+<a name="L169"></a><tt class="py-lineno">169</tt>  <tt class="py-line"><tt class="py-docstring">        @param nroBytes: The number of bytes to skip.</tt> </tt>
+<a name="L170"></a><tt class="py-lineno">170</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L171"></a><tt class="py-lineno">171</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">data</tt><tt class="py-op">.</tt><tt class="py-name">seek</tt><tt class="py-op">(</tt><tt class="py-name">nroBytes</tt> <tt class="py-op">+</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">data</tt><tt class="py-op">.</tt><tt id="link-13" class="py-name"><a title="pype32.utils.ReadData.tell
+pype32.utils.WriteData.tell" class="py-name" href="#" onclick="return doclink('link-13', 'tell', 'link-5');">tell</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L172"></a><tt class="py-lineno">172</tt>  <tt class="py-line"> </tt>
+<a name="WriteData.tell"></a><div id="WriteData.tell-def"><a name="L173"></a><tt class="py-lineno">173</tt> <a class="py-toggle" href="#" id="WriteData.tell-toggle" onclick="return toggle('WriteData.tell');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pype32.utils.WriteData-class.html#tell">tell</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="WriteData.tell-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="WriteData.tell-expanded"><a name="L174"></a><tt class="py-lineno">174</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L175"></a><tt class="py-lineno">175</tt>  <tt class="py-line"><tt class="py-docstring">        Returns the current position of the offset in the L{WriteData} sream object.</tt> </tt>
+<a name="L176"></a><tt class="py-lineno">176</tt>  <tt class="py-line"><tt class="py-docstring">        </tt> </tt>
+<a name="L177"></a><tt class="py-lineno">177</tt>  <tt class="py-line"><tt class="py-docstring">        @rtype: int</tt> </tt>
+<a name="L178"></a><tt class="py-lineno">178</tt>  <tt class="py-line"><tt class="py-docstring">        @return: The value of the current offset in the stream.</tt> </tt>
+<a name="L179"></a><tt class="py-lineno">179</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L180"></a><tt class="py-lineno">180</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">data</tt><tt class="py-op">.</tt><tt id="link-14" class="py-name"><a title="pype32.utils.ReadData.tell
+pype32.utils.WriteData.tell" class="py-name" href="#" onclick="return doclink('link-14', 'tell', 'link-5');">tell</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L181"></a><tt class="py-lineno">181</tt>  <tt class="py-line">     </tt>
+<a name="WriteData.__del__"></a><div id="WriteData.__del__-def"><a name="L182"></a><tt class="py-lineno">182</tt> <a class="py-toggle" href="#" id="WriteData.__del__-toggle" onclick="return toggle('WriteData.__del__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pype32.utils.WriteData-class.html#__del__">__del__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="WriteData.__del__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="WriteData.__del__-expanded"><a name="L183"></a><tt class="py-lineno">183</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">data</tt><tt class="py-op">.</tt><tt class="py-name">close</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L184"></a><tt class="py-lineno">184</tt>  <tt class="py-line">        <tt class="py-keyword">del</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">data</tt> </tt>
+</div></div><a name="L185"></a><tt class="py-lineno">185</tt>  <tt class="py-line">         </tt>
+<a name="ReadData"></a><div id="ReadData-def"><a name="L186"></a><tt class="py-lineno">186</tt> <a class="py-toggle" href="#" id="ReadData-toggle" onclick="return toggle('ReadData');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pype32.utils.ReadData-class.html">ReadData</a><tt class="py-op">(</tt><tt class="py-base-class">object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ReadData-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="ReadData-expanded"><a name="L187"></a><tt class="py-lineno">187</tt>  <tt class="py-line">    <tt class="py-docstring">"""Returns a ReadData-like stream object."""</tt> </tt>
+<a name="ReadData.__init__"></a><div id="ReadData.__init__-def"><a name="L188"></a><tt class="py-lineno">188</tt> <a class="py-toggle" href="#" id="ReadData.__init__-toggle" onclick="return toggle('ReadData.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pype32.utils.ReadData-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">data</tt><tt class="py-op">,</tt> <tt class="py-param">endianness</tt> <tt class="py-op">=</tt> <tt class="py-string">"&lt;"</tt><tt class="py-op">,</tt>  <tt class="py-param">signed</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ReadData.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ReadData.__init__-expanded"><a name="L189"></a><tt class="py-lineno">189</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L190"></a><tt class="py-lineno">190</tt>  <tt class="py-line"><tt class="py-docstring">        @type data: str</tt> </tt>
+<a name="L191"></a><tt class="py-lineno">191</tt>  <tt class="py-line"><tt class="py-docstring">        @param data: The data from which we want to read.</tt> </tt>
+<a name="L192"></a><tt class="py-lineno">192</tt>  <tt class="py-line"><tt class="py-docstring">        </tt> </tt>
+<a name="L193"></a><tt class="py-lineno">193</tt>  <tt class="py-line"><tt class="py-docstring">        @type endianness: str</tt> </tt>
+<a name="L194"></a><tt class="py-lineno">194</tt>  <tt class="py-line"><tt class="py-docstring">        @param endianness: (Optional) Indicates the endianness used to read the data. The C{&lt;} indicates little-endian while C{&gt;} indicates big-endian.</tt> </tt>
+<a name="L195"></a><tt class="py-lineno">195</tt>  <tt class="py-line"><tt class="py-docstring">        </tt> </tt>
+<a name="L196"></a><tt class="py-lineno">196</tt>  <tt class="py-line"><tt class="py-docstring">        @type signed: bool</tt> </tt>
+<a name="L197"></a><tt class="py-lineno">197</tt>  <tt class="py-line"><tt class="py-docstring">        @param signed: (Optional) If set to C{True} the data will be treated as signed. If set to C{False} it will be treated as unsigned.</tt> </tt>
+<a name="L198"></a><tt class="py-lineno">198</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L199"></a><tt class="py-lineno">199</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">data</tt> <tt class="py-op">=</tt> <tt class="py-name">data</tt> </tt>
+<a name="L200"></a><tt class="py-lineno">200</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">offset</tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt> </tt>
+<a name="L201"></a><tt class="py-lineno">201</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">endianness</tt> <tt class="py-op">=</tt> <tt class="py-name">endianness</tt> </tt>
+<a name="L202"></a><tt class="py-lineno">202</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">signed</tt> <tt class="py-op">=</tt> <tt class="py-name">signed</tt> </tt>
+<a name="L203"></a><tt class="py-lineno">203</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">log</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L204"></a><tt class="py-lineno">204</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">length</tt> <tt class="py-op">=</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">data</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L205"></a><tt class="py-lineno">205</tt>  <tt class="py-line"> </tt>
+<a name="ReadData.__len__"></a><div id="ReadData.__len__-def"><a name="L206"></a><tt class="py-lineno">206</tt> <a class="py-toggle" href="#" id="ReadData.__len__-toggle" onclick="return toggle('ReadData.__len__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pype32.utils.ReadData-class.html#__len__">__len__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ReadData.__len__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ReadData.__len__-expanded"><a name="L207"></a><tt class="py-lineno">207</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">length</tt> <tt class="py-op">-</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">offset</tt> </tt>
+</div><a name="L208"></a><tt class="py-lineno">208</tt>  <tt class="py-line">         </tt>
+<a name="ReadData.readDword"></a><div id="ReadData.readDword-def"><a name="L209"></a><tt class="py-lineno">209</tt> <a class="py-toggle" href="#" id="ReadData.readDword-toggle" onclick="return toggle('ReadData.readDword');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pype32.utils.ReadData-class.html#readDword">readDword</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ReadData.readDword-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ReadData.readDword-expanded"><a name="L210"></a><tt class="py-lineno">210</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L211"></a><tt class="py-lineno">211</tt>  <tt class="py-line"><tt class="py-docstring">        Reads a dword value from the L{ReadData} stream object.</tt> </tt>
+<a name="L212"></a><tt class="py-lineno">212</tt>  <tt class="py-line"><tt class="py-docstring">        </tt> </tt>
+<a name="L213"></a><tt class="py-lineno">213</tt>  <tt class="py-line"><tt class="py-docstring">        @rtype: int</tt> </tt>
+<a name="L214"></a><tt class="py-lineno">214</tt>  <tt class="py-line"><tt class="py-docstring">        @return: The dword value read from the L{ReadData} stream.</tt> </tt>
+<a name="L215"></a><tt class="py-lineno">215</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L216"></a><tt class="py-lineno">216</tt>  <tt class="py-line">        <tt class="py-name">dword</tt> <tt class="py-op">=</tt> <tt class="py-name">unpack</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">endianness</tt> <tt class="py-op">+</tt> <tt class="py-op">(</tt><tt class="py-string">'L'</tt> <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">signed</tt> <tt class="py-keyword">else</tt> <tt class="py-string">'l'</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-15" class="py-name" targets="Method pype32.utils.ReadData.readAt()=pype32.utils.ReadData-class.html#readAt"><a title="pype32.utils.ReadData.readAt" class="py-name" href="#" onclick="return doclink('link-15', 'readAt', 'link-15');">readAt</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">offset</tt><tt class="py-op">,</tt>  <tt class="py-number">4</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> </tt>
+<a name="L217"></a><tt class="py-lineno">217</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">offset</tt> <tt class="py-op">+=</tt> <tt class="py-number">4</tt> </tt>
+<a name="L218"></a><tt class="py-lineno">218</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">dword</tt> </tt>
+</div><a name="L219"></a><tt class="py-lineno">219</tt>  <tt class="py-line"> </tt>
+<a name="ReadData.readWord"></a><div id="ReadData.readWord-def"><a name="L220"></a><tt class="py-lineno">220</tt> <a class="py-toggle" href="#" id="ReadData.readWord-toggle" onclick="return toggle('ReadData.readWord');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pype32.utils.ReadData-class.html#readWord">readWord</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ReadData.readWord-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ReadData.readWord-expanded"><a name="L221"></a><tt class="py-lineno">221</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L222"></a><tt class="py-lineno">222</tt>  <tt class="py-line"><tt class="py-docstring">        Reads a word value from the L{ReadData} stream object.</tt> </tt>
+<a name="L223"></a><tt class="py-lineno">223</tt>  <tt class="py-line"><tt class="py-docstring">        </tt> </tt>
+<a name="L224"></a><tt class="py-lineno">224</tt>  <tt class="py-line"><tt class="py-docstring">        @rtype: int</tt> </tt>
+<a name="L225"></a><tt class="py-lineno">225</tt>  <tt class="py-line"><tt class="py-docstring">        @return: The word value read from the L{ReadData} stream.</tt> </tt>
+<a name="L226"></a><tt class="py-lineno">226</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L227"></a><tt class="py-lineno">227</tt>  <tt class="py-line">        <tt class="py-name">word</tt> <tt class="py-op">=</tt> <tt class="py-name">unpack</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">endianness</tt> <tt class="py-op">+</tt> <tt class="py-op">(</tt><tt class="py-string">'H'</tt> <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">signed</tt> <tt class="py-keyword">else</tt> <tt class="py-string">'h'</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-16" class="py-name"><a title="pype32.utils.ReadData.readAt" class="py-name" href="#" onclick="return doclink('link-16', 'readAt', 'link-15');">readAt</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">offset</tt><tt class="py-op">,</tt> <tt class="py-number">2</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> </tt>
+<a name="L228"></a><tt class="py-lineno">228</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">offset</tt> <tt class="py-op">+=</tt> <tt class="py-number">2</tt> </tt>
+<a name="L229"></a><tt class="py-lineno">229</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">word</tt> </tt>
+</div><a name="L230"></a><tt class="py-lineno">230</tt>  <tt class="py-line">         </tt>
+<a name="ReadData.readByte"></a><div id="ReadData.readByte-def"><a name="L231"></a><tt class="py-lineno">231</tt> <a class="py-toggle" href="#" id="ReadData.readByte-toggle" onclick="return toggle('ReadData.readByte');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pype32.utils.ReadData-class.html#readByte">readByte</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ReadData.readByte-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ReadData.readByte-expanded"><a name="L232"></a><tt class="py-lineno">232</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L233"></a><tt class="py-lineno">233</tt>  <tt class="py-line"><tt class="py-docstring">        Reads a byte value from the L{ReadData} stream object.</tt> </tt>
+<a name="L234"></a><tt class="py-lineno">234</tt>  <tt class="py-line"><tt class="py-docstring">        </tt> </tt>
+<a name="L235"></a><tt class="py-lineno">235</tt>  <tt class="py-line"><tt class="py-docstring">        @rtype: int</tt> </tt>
+<a name="L236"></a><tt class="py-lineno">236</tt>  <tt class="py-line"><tt class="py-docstring">        @return: The byte value read from the L{ReadData} stream.</tt> </tt>
+<a name="L237"></a><tt class="py-lineno">237</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L238"></a><tt class="py-lineno">238</tt>  <tt class="py-line">        <tt class="py-name">byte</tt> <tt class="py-op">=</tt> <tt class="py-name">unpack</tt><tt class="py-op">(</tt><tt class="py-string">'B'</tt> <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">signed</tt> <tt class="py-keyword">else</tt> <tt class="py-string">'b'</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-17" class="py-name"><a title="pype32.utils.ReadData.readAt" class="py-name" href="#" onclick="return doclink('link-17', 'readAt', 'link-15');">readAt</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">offset</tt><tt class="py-op">,</tt> <tt class="py-number">1</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> </tt>
+<a name="L239"></a><tt class="py-lineno">239</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">offset</tt> <tt class="py-op">+=</tt> <tt class="py-number">1</tt> </tt>
+<a name="L240"></a><tt class="py-lineno">240</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">byte</tt> </tt>
+</div><a name="L241"></a><tt class="py-lineno">241</tt>  <tt class="py-line">     </tt>
+<a name="ReadData.readQword"></a><div id="ReadData.readQword-def"><a name="L242"></a><tt class="py-lineno">242</tt> <a class="py-toggle" href="#" id="ReadData.readQword-toggle" onclick="return toggle('ReadData.readQword');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pype32.utils.ReadData-class.html#readQword">readQword</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ReadData.readQword-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ReadData.readQword-expanded"><a name="L243"></a><tt class="py-lineno">243</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L244"></a><tt class="py-lineno">244</tt>  <tt class="py-line"><tt class="py-docstring">        Reads a qword value from the L{ReadData} stream object.</tt> </tt>
+<a name="L245"></a><tt class="py-lineno">245</tt>  <tt class="py-line"><tt class="py-docstring">        </tt> </tt>
+<a name="L246"></a><tt class="py-lineno">246</tt>  <tt class="py-line"><tt class="py-docstring">        @rtype: int</tt> </tt>
+<a name="L247"></a><tt class="py-lineno">247</tt>  <tt class="py-line"><tt class="py-docstring">        @return: The qword value read from the L{ReadData} stream.</tt> </tt>
+<a name="L248"></a><tt class="py-lineno">248</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L249"></a><tt class="py-lineno">249</tt>  <tt class="py-line">        <tt class="py-name">qword</tt> <tt class="py-op">=</tt> <tt class="py-name">unpack</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">endianness</tt> <tt class="py-op">+</tt> <tt class="py-op">(</tt><tt class="py-string">'Q'</tt> <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">signed</tt> <tt class="py-keyword">else</tt> <tt class="py-string">'b'</tt><tt class="py-op">)</tt><tt class="py-op">,</tt>  <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-18" class="py-name"><a title="pype32.utils.ReadData.readAt" class="py-name" href="#" onclick="return doclink('link-18', 'readAt', 'link-15');">readAt</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">offset</tt><tt class="py-op">,</tt> <tt class="py-number">8</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> </tt>
+<a name="L250"></a><tt class="py-lineno">250</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">offset</tt> <tt class="py-op">+=</tt> <tt class="py-number">8</tt> </tt>
+<a name="L251"></a><tt class="py-lineno">251</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">qword</tt> </tt>
+</div><a name="L252"></a><tt class="py-lineno">252</tt>  <tt class="py-line">         </tt>
+<a name="ReadData.readString"></a><div id="ReadData.readString-def"><a name="L253"></a><tt class="py-lineno">253</tt> <a class="py-toggle" href="#" id="ReadData.readString-toggle" onclick="return toggle('ReadData.readString');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pype32.utils.ReadData-class.html#readString">readString</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ReadData.readString-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ReadData.readString-expanded"><a name="L254"></a><tt class="py-lineno">254</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L255"></a><tt class="py-lineno">255</tt>  <tt class="py-line"><tt class="py-docstring">        Reads an ASCII string from the L{ReadData} stream object.</tt> </tt>
+<a name="L256"></a><tt class="py-lineno">256</tt>  <tt class="py-line"><tt class="py-docstring">        </tt> </tt>
+<a name="L257"></a><tt class="py-lineno">257</tt>  <tt class="py-line"><tt class="py-docstring">        @rtype: str</tt> </tt>
+<a name="L258"></a><tt class="py-lineno">258</tt>  <tt class="py-line"><tt class="py-docstring">        @return: An ASCII string read form the stream.</tt> </tt>
+<a name="L259"></a><tt class="py-lineno">259</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L260"></a><tt class="py-lineno">260</tt>  <tt class="py-line">        <tt class="py-name">resultStr</tt> <tt class="py-op">=</tt> <tt class="py-string">""</tt> </tt>
+<a name="L261"></a><tt class="py-lineno">261</tt>  <tt class="py-line">        <tt class="py-keyword">while</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">data</tt><tt class="py-op">[</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">offset</tt><tt class="py-op">]</tt> <tt class="py-op">!=</tt> <tt class="py-string">"\x00"</tt><tt class="py-op">:</tt> </tt>
+<a name="L262"></a><tt class="py-lineno">262</tt>  <tt class="py-line">            <tt class="py-name">resultStr</tt> <tt class="py-op">+=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">data</tt><tt class="py-op">[</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">offset</tt><tt class="py-op">]</tt> </tt>
+<a name="L263"></a><tt class="py-lineno">263</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">offset</tt> <tt class="py-op">+=</tt> <tt class="py-number">1</tt> </tt>
+<a name="L264"></a><tt class="py-lineno">264</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">resultStr</tt> </tt>
+</div><a name="L265"></a><tt class="py-lineno">265</tt>  <tt class="py-line"> </tt>
+<a name="ReadData.readAlignedString"></a><div id="ReadData.readAlignedString-def"><a name="L266"></a><tt class="py-lineno">266</tt> <a class="py-toggle" href="#" id="ReadData.readAlignedString-toggle" onclick="return toggle('ReadData.readAlignedString');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pype32.utils.ReadData-class.html#readAlignedString">readAlignedString</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">align</tt> <tt class="py-op">=</tt> <tt class="py-number">4</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ReadData.readAlignedString-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ReadData.readAlignedString-expanded"><a name="L267"></a><tt class="py-lineno">267</tt>  <tt class="py-line">        <tt class="py-docstring">""" </tt> </tt>
+<a name="L268"></a><tt class="py-lineno">268</tt>  <tt class="py-line"><tt class="py-docstring">        Reads an ASCII string aligned to the next align-bytes boundary.</tt> </tt>
+<a name="L269"></a><tt class="py-lineno">269</tt>  <tt class="py-line"><tt class="py-docstring">        </tt> </tt>
+<a name="L270"></a><tt class="py-lineno">270</tt>  <tt class="py-line"><tt class="py-docstring">        @type align: int</tt> </tt>
+<a name="L271"></a><tt class="py-lineno">271</tt>  <tt class="py-line"><tt class="py-docstring">        @param align: (Optional) The value we want the ASCII string to be aligned.</tt> </tt>
+<a name="L272"></a><tt class="py-lineno">272</tt>  <tt class="py-line"><tt class="py-docstring">        </tt> </tt>
+<a name="L273"></a><tt class="py-lineno">273</tt>  <tt class="py-line"><tt class="py-docstring">        @rtype: str</tt> </tt>
+<a name="L274"></a><tt class="py-lineno">274</tt>  <tt class="py-line"><tt class="py-docstring">        @return: A 4-bytes aligned (default) ASCII string.</tt> </tt>
+<a name="L275"></a><tt class="py-lineno">275</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L276"></a><tt class="py-lineno">276</tt>  <tt class="py-line">        <tt class="py-name">s</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-19" class="py-name" targets="Method pype32.utils.ReadData.readString()=pype32.utils.ReadData-class.html#readString"><a title="pype32.utils.ReadData.readString" class="py-name" href="#" onclick="return doclink('link-19', 'readString', 'link-19');">readString</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L277"></a><tt class="py-lineno">277</tt>  <tt class="py-line">        <tt class="py-name">r</tt> <tt class="py-op">=</tt> <tt class="py-name">align</tt> <tt class="py-op">-</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">s</tt><tt class="py-op">)</tt> <tt class="py-op">%</tt> <tt class="py-name">align</tt> </tt>
+<a name="L278"></a><tt class="py-lineno">278</tt>  <tt class="py-line">        <tt class="py-keyword">while</tt> <tt class="py-name">r</tt><tt class="py-op">:</tt> </tt>
+<a name="L279"></a><tt class="py-lineno">279</tt>  <tt class="py-line">            <tt class="py-name">s</tt> <tt class="py-op">+=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">data</tt><tt class="py-op">[</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">offset</tt><tt class="py-op">]</tt> </tt>
+<a name="L280"></a><tt class="py-lineno">280</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">offset</tt> <tt class="py-op">+=</tt> <tt class="py-number">1</tt> </tt>
+<a name="L281"></a><tt class="py-lineno">281</tt>  <tt class="py-line">            <tt class="py-name">r</tt> <tt class="py-op">-=</tt> <tt class="py-number">1</tt> </tt>
+<a name="L282"></a><tt class="py-lineno">282</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">s</tt><tt class="py-op">.</tt><tt class="py-name">rstrip</tt><tt class="py-op">(</tt><tt class="py-string">"\x00"</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L283"></a><tt class="py-lineno">283</tt>  <tt class="py-line">         </tt>
+<a name="ReadData.read"></a><div id="ReadData.read-def"><a name="L284"></a><tt class="py-lineno">284</tt> <a class="py-toggle" href="#" id="ReadData.read-toggle" onclick="return toggle('ReadData.read');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pype32.utils.ReadData-class.html#read">read</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">nroBytes</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ReadData.read-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ReadData.read-expanded"><a name="L285"></a><tt class="py-lineno">285</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L286"></a><tt class="py-lineno">286</tt>  <tt class="py-line"><tt class="py-docstring">        Reads data from the L{ReadData} stream object.</tt> </tt>
+<a name="L287"></a><tt class="py-lineno">287</tt>  <tt class="py-line"><tt class="py-docstring">        </tt> </tt>
+<a name="L288"></a><tt class="py-lineno">288</tt>  <tt class="py-line"><tt class="py-docstring">        @type nroBytes: int</tt> </tt>
+<a name="L289"></a><tt class="py-lineno">289</tt>  <tt class="py-line"><tt class="py-docstring">        @param nroBytes: The number of bytes to read.</tt> </tt>
+<a name="L290"></a><tt class="py-lineno">290</tt>  <tt class="py-line"><tt class="py-docstring">        </tt> </tt>
+<a name="L291"></a><tt class="py-lineno">291</tt>  <tt class="py-line"><tt class="py-docstring">        @rtype: str</tt> </tt>
+<a name="L292"></a><tt class="py-lineno">292</tt>  <tt class="py-line"><tt class="py-docstring">        @return: A string containing the read data from the L{ReadData} stream object.</tt> </tt>
+<a name="L293"></a><tt class="py-lineno">293</tt>  <tt class="py-line"><tt class="py-docstring">        </tt> </tt>
+<a name="L294"></a><tt class="py-lineno">294</tt>  <tt class="py-line"><tt class="py-docstring">        @raise DataLengthException: The number of bytes tried to be read are more than the remaining in the L{ReadData} stream.</tt> </tt>
+<a name="L295"></a><tt class="py-lineno">295</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L296"></a><tt class="py-lineno">296</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">nroBytes</tt> <tt class="py-op">&gt;</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">length</tt> <tt class="py-op">-</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">offset</tt><tt class="py-op">:</tt> </tt>
+<a name="L297"></a><tt class="py-lineno">297</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">log</tt><tt class="py-op">:</tt> </tt>
+<a name="L298"></a><tt class="py-lineno">298</tt>  <tt class="py-line">                <tt class="py-keyword">print</tt> <tt class="py-string">"Warning: Trying to read: %d bytes - only %d bytes left"</tt> <tt class="py-op">%</tt> <tt class="py-op">(</tt><tt class="py-name">nroBytes</tt><tt class="py-op">,</tt>  <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">length</tt> <tt class="py-op">-</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">offset</tt><tt class="py-op">)</tt> </tt>
+<a name="L299"></a><tt class="py-lineno">299</tt>  <tt class="py-line">            <tt class="py-name">nroBytes</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">length</tt> <tt class="py-op">-</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">offset</tt> </tt>
+<a name="L300"></a><tt class="py-lineno">300</tt>  <tt class="py-line"> </tt>
+<a name="L301"></a><tt class="py-lineno">301</tt>  <tt class="py-line">        <tt class="py-name">resultStr</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">data</tt><tt class="py-op">[</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">offset</tt><tt class="py-op">:</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">offset</tt> <tt class="py-op">+</tt> <tt class="py-name">nroBytes</tt><tt class="py-op">]</tt> </tt>
+<a name="L302"></a><tt class="py-lineno">302</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">offset</tt> <tt class="py-op">+=</tt> <tt class="py-name">nroBytes</tt> </tt>
+<a name="L303"></a><tt class="py-lineno">303</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">resultStr</tt> </tt>
+</div><a name="L304"></a><tt class="py-lineno">304</tt>  <tt class="py-line">         </tt>
+<a name="ReadData.skipBytes"></a><div id="ReadData.skipBytes-def"><a name="L305"></a><tt class="py-lineno">305</tt> <a class="py-toggle" href="#" id="ReadData.skipBytes-toggle" onclick="return toggle('ReadData.skipBytes');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pype32.utils.ReadData-class.html#skipBytes">skipBytes</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">nroBytes</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ReadData.skipBytes-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ReadData.skipBytes-expanded"><a name="L306"></a><tt class="py-lineno">306</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L307"></a><tt class="py-lineno">307</tt>  <tt class="py-line"><tt class="py-docstring">        Skips the specified number as parameter to the current value of the L{ReadData} stream.</tt> </tt>
+<a name="L308"></a><tt class="py-lineno">308</tt>  <tt class="py-line"><tt class="py-docstring">        </tt> </tt>
+<a name="L309"></a><tt class="py-lineno">309</tt>  <tt class="py-line"><tt class="py-docstring">        @type nroBytes: int</tt> </tt>
+<a name="L310"></a><tt class="py-lineno">310</tt>  <tt class="py-line"><tt class="py-docstring">        @param nroBytes: The number of bytes to skip.        </tt> </tt>
+<a name="L311"></a><tt class="py-lineno">311</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L312"></a><tt class="py-lineno">312</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">offset</tt> <tt class="py-op">+=</tt> <tt class="py-name">nroBytes</tt> </tt>
+</div><a name="L313"></a><tt class="py-lineno">313</tt>  <tt class="py-line">         </tt>
+<a name="ReadData.setOffset"></a><div id="ReadData.setOffset-def"><a name="L314"></a><tt class="py-lineno">314</tt> <a class="py-toggle" href="#" id="ReadData.setOffset-toggle" onclick="return toggle('ReadData.setOffset');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pype32.utils.ReadData-class.html#setOffset">setOffset</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">value</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ReadData.setOffset-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ReadData.setOffset-expanded"><a name="L315"></a><tt class="py-lineno">315</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L316"></a><tt class="py-lineno">316</tt>  <tt class="py-line"><tt class="py-docstring">        Sets the offset of the L{ReadData} stream object in wich the data is read.</tt> </tt>
+<a name="L317"></a><tt class="py-lineno">317</tt>  <tt class="py-line"><tt class="py-docstring">        </tt> </tt>
+<a name="L318"></a><tt class="py-lineno">318</tt>  <tt class="py-line"><tt class="py-docstring">        @type value: int</tt> </tt>
+<a name="L319"></a><tt class="py-lineno">319</tt>  <tt class="py-line"><tt class="py-docstring">        @param value: Integer value that represent the offset we want to start reading in the L{ReadData} stream.</tt> </tt>
+<a name="L320"></a><tt class="py-lineno">320</tt>  <tt class="py-line"><tt class="py-docstring">            </tt> </tt>
+<a name="L321"></a><tt class="py-lineno">321</tt>  <tt class="py-line"><tt class="py-docstring">        @raise WrongOffsetValueException: The value is beyond the total length of the data. </tt> </tt>
+<a name="L322"></a><tt class="py-lineno">322</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L323"></a><tt class="py-lineno">323</tt>  <tt class="py-line">        <tt class="py-comment">#if value &gt;= len(self.data):</tt> </tt>
+<a name="L324"></a><tt class="py-lineno">324</tt>  <tt class="py-line">        <tt class="py-comment">#    raise excep.WrongOffsetValueException("Wrong offset value. Must be less than %d" % len(self.data))</tt> </tt>
+<a name="L325"></a><tt class="py-lineno">325</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">offset</tt> <tt class="py-op">=</tt> <tt class="py-name">value</tt> </tt>
+</div><a name="L326"></a><tt class="py-lineno">326</tt>  <tt class="py-line">     </tt>
+<a name="ReadData.readAt"></a><div id="ReadData.readAt-def"><a name="L327"></a><tt class="py-lineno">327</tt> <a class="py-toggle" href="#" id="ReadData.readAt-toggle" onclick="return toggle('ReadData.readAt');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pype32.utils.ReadData-class.html#readAt">readAt</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">offset</tt><tt class="py-op">,</tt> <tt class="py-param">size</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ReadData.readAt-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ReadData.readAt-expanded"><a name="L328"></a><tt class="py-lineno">328</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L329"></a><tt class="py-lineno">329</tt>  <tt class="py-line"><tt class="py-docstring">        Reads as many bytes indicated in the size parameter at the specific offset.</tt> </tt>
+<a name="L330"></a><tt class="py-lineno">330</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L331"></a><tt class="py-lineno">331</tt>  <tt class="py-line"><tt class="py-docstring">        @type offset: int</tt> </tt>
+<a name="L332"></a><tt class="py-lineno">332</tt>  <tt class="py-line"><tt class="py-docstring">        @param offset: Offset of the value to be read.</tt> </tt>
+<a name="L333"></a><tt class="py-lineno">333</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L334"></a><tt class="py-lineno">334</tt>  <tt class="py-line"><tt class="py-docstring">        @type size: int</tt> </tt>
+<a name="L335"></a><tt class="py-lineno">335</tt>  <tt class="py-line"><tt class="py-docstring">        @param size: This parameter indicates how many bytes are going to be read from a given offset.</tt> </tt>
+<a name="L336"></a><tt class="py-lineno">336</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L337"></a><tt class="py-lineno">337</tt>  <tt class="py-line"><tt class="py-docstring">        @rtype: str</tt> </tt>
+<a name="L338"></a><tt class="py-lineno">338</tt>  <tt class="py-line"><tt class="py-docstring">        @return: A packed string containing the read data.</tt> </tt>
+<a name="L339"></a><tt class="py-lineno">339</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L340"></a><tt class="py-lineno">340</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">offset</tt> <tt class="py-op">&gt;</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">length</tt><tt class="py-op">:</tt> </tt>
+<a name="L341"></a><tt class="py-lineno">341</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">log</tt><tt class="py-op">:</tt> </tt>
+<a name="L342"></a><tt class="py-lineno">342</tt>  <tt class="py-line">                <tt class="py-keyword">print</tt> <tt class="py-string">"Warning: Trying to read: %d bytes - only %d bytes left"</tt> <tt class="py-op">%</tt> <tt class="py-op">(</tt><tt class="py-name">nroBytes</tt><tt class="py-op">,</tt>  <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">length</tt> <tt class="py-op">-</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">offset</tt><tt class="py-op">)</tt> </tt>
+<a name="L343"></a><tt class="py-lineno">343</tt>  <tt class="py-line">            <tt class="py-name">offset</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">length</tt> <tt class="py-op">-</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">offset</tt> </tt>
+<a name="L344"></a><tt class="py-lineno">344</tt>  <tt class="py-line">        <tt class="py-name">tmpOff</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-20" class="py-name"><a title="pype32.utils.ReadData.tell
+pype32.utils.WriteData.tell" class="py-name" href="#" onclick="return doclink('link-20', 'tell', 'link-5');">tell</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L345"></a><tt class="py-lineno">345</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-21" class="py-name" targets="Method pype32.utils.ReadData.setOffset()=pype32.utils.ReadData-class.html#setOffset,Method pype32.utils.WriteData.setOffset()=pype32.utils.WriteData-class.html#setOffset"><a title="pype32.utils.ReadData.setOffset
+pype32.utils.WriteData.setOffset" class="py-name" href="#" onclick="return doclink('link-21', 'setOffset', 'link-21');">setOffset</a></tt><tt class="py-op">(</tt><tt class="py-name">offset</tt><tt class="py-op">)</tt> </tt>
+<a name="L346"></a><tt class="py-lineno">346</tt>  <tt class="py-line">        <tt class="py-name">r</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-22" class="py-name" targets="Method pype32.utils.ReadData.read()=pype32.utils.ReadData-class.html#read"><a title="pype32.utils.ReadData.read" class="py-name" href="#" onclick="return doclink('link-22', 'read', 'link-22');">read</a></tt><tt class="py-op">(</tt><tt class="py-name">size</tt><tt class="py-op">)</tt> </tt>
+<a name="L347"></a><tt class="py-lineno">347</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-23" class="py-name"><a title="pype32.utils.ReadData.setOffset
+pype32.utils.WriteData.setOffset" class="py-name" href="#" onclick="return doclink('link-23', 'setOffset', 'link-21');">setOffset</a></tt><tt class="py-op">(</tt><tt class="py-name">tmpOff</tt><tt class="py-op">)</tt> </tt>
+<a name="L348"></a><tt class="py-lineno">348</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">r</tt> </tt>
+</div><a name="L349"></a><tt class="py-lineno">349</tt>  <tt class="py-line">         </tt>
+<a name="ReadData.tell"></a><div id="ReadData.tell-def"><a name="L350"></a><tt class="py-lineno">350</tt> <a class="py-toggle" href="#" id="ReadData.tell-toggle" onclick="return toggle('ReadData.tell');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pype32.utils.ReadData-class.html#tell">tell</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ReadData.tell-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ReadData.tell-expanded"><a name="L351"></a><tt class="py-lineno">351</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L352"></a><tt class="py-lineno">352</tt>  <tt class="py-line"><tt class="py-docstring">        Returns the current position of the offset in the L{ReadData} sream object.</tt> </tt>
+<a name="L353"></a><tt class="py-lineno">353</tt>  <tt class="py-line"><tt class="py-docstring">        </tt> </tt>
+<a name="L354"></a><tt class="py-lineno">354</tt>  <tt class="py-line"><tt class="py-docstring">        @rtype: int</tt> </tt>
+<a name="L355"></a><tt class="py-lineno">355</tt>  <tt class="py-line"><tt class="py-docstring">        @return: The value of the current offset in the stream.</tt> </tt>
+<a name="L356"></a><tt class="py-lineno">356</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt>         </tt>
+<a name="L357"></a><tt class="py-lineno">357</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">offset</tt> </tt>
+</div><a name="L358"></a><tt class="py-lineno">358</tt>  <tt class="py-line"> </tt>
+<a name="ReadData.readFields"></a><div id="ReadData.readFields-def"><a name="L359"></a><tt class="py-lineno">359</tt> <a class="py-toggle" href="#" id="ReadData.readFields-toggle" onclick="return toggle('ReadData.readFields');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pype32.utils.ReadData-class.html#readFields">readFields</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">fields</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ReadData.readFields-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ReadData.readFields-expanded"><a name="L360"></a><tt class="py-lineno">360</tt>  <tt class="py-line">        <tt class="py-name">result</tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-op">}</tt> </tt>
+<a name="L361"></a><tt class="py-lineno">361</tt>  <tt class="py-line">        <tt class="py-comment">#if not isinstance(fields, (list, tuple)): raise Exception("Invalid field list '{0}'.".format(type(fields).__name__))</tt> </tt>
+<a name="L362"></a><tt class="py-lineno">362</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">isinstance</tt><tt class="py-op">(</tt><tt class="py-name">fields</tt><tt class="py-op">,</tt> <tt class="py-op">(</tt><tt class="py-name">list</tt><tt class="py-op">,</tt> <tt class="py-name">tuple</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> <tt class="py-keyword">return</tt> <tt class="py-name">result</tt> </tt>
+<a name="L363"></a><tt class="py-lineno">363</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">field</tt> <tt class="py-keyword">in</tt> <tt class="py-name">fields</tt><tt class="py-op">:</tt> </tt>
+<a name="L364"></a><tt class="py-lineno">364</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">isinstance</tt><tt class="py-op">(</tt><tt class="py-name">field</tt><tt class="py-op">,</tt> <tt class="py-name">dict</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> <tt class="py-keyword">raise</tt> <tt class="py-name">Exception</tt><tt class="py-op">(</tt><tt class="py-string">"Invalid field definition '{0}'."</tt><tt class="py-op">.</tt><tt class="py-name">format</tt><tt class="py-op">(</tt><tt class="py-name">type</tt><tt class="py-op">(</tt><tt class="py-name">field</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">__name__</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L365"></a><tt class="py-lineno">365</tt>  <tt class="py-line">            <tt class="py-keyword">for</tt> <tt class="py-name">k</tt><tt class="py-op">,</tt> <tt class="py-name">v</tt> <tt class="py-keyword">in</tt> <tt class="py-name">field</tt><tt class="py-op">.</tt><tt class="py-name">iteritems</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L366"></a><tt class="py-lineno">366</tt>  <tt class="py-line">                <tt class="py-comment">#print type(v).__name__</tt> </tt>
+<a name="L367"></a><tt class="py-lineno">367</tt>  <tt class="py-line">                <tt class="py-name">parsed</tt> <tt class="py-op">=</tt> <tt class="py-name">v</tt><tt class="py-op">.</tt><tt id="link-24" class="py-name" targets="Static Method pype32.datadirs.DataDirectory.parse()=pype32.datadirs.DataDirectory-class.html#parse,Static Method pype32.datadirs.Directory.parse()=pype32.datadirs.Directory-class.html#parse,Static Method pype32.datatypes.Array.parse()=pype32.datatypes.Array-class.html#parse,Static Method pype32.datatypes.BYTE.parse()=pype32.datatypes.BYTE-class.html#parse,Static Method pype32.datatypes.DWORD.parse()=pype32.datatypes.DWORD-class.html#parse,Static Method pype32.datatypes.QWORD.parse()=pype32.datatypes.QWORD-class.html#parse,Static Method pype32.datatypes.WORD.parse()=pype32.datatypes.WORD-class.html#parse,Static Method pype32.directories.ExportTableEntry.parse()=pype32.directories.ExportTableEntry-class.html#parse,Static Method pype32.directories.ImageBaseRelocationEntry.parse()=pype32.directories.ImageBaseRelocationEntry-class.html#parse,Static Method pype32.directories.ImageBoundForwarderRef.parse()=pype32.directories.ImageBoundForwarderRef-class.html#parse,Static Method pype32.directories.ImageBoundForwarderRefEntry.parse()=pype32.directories.ImageBoundForwarderRefEntry-class.html#parse,Static Method pype32.directories.ImageBoundImportDescriptor.parse()=pype32.directories.ImageBoundImportDescriptor-class.html#parse,Static Method pype32.directories.ImageBoundImportDescriptorEntry.parse()=pype32.directories.ImageBoundImportDescriptorEntry-class.html#parse,Static Method pype32.directories.ImageDebugDirectories.parse()=pype32.directories.ImageDebugDirectories-class.html#parse,Static Method pype32.directories.ImageDebugDirectory.parse()=pype32.directories.ImageDebugDirectory-class.html#parse,Static Method pype32.directories.ImageExportTable.parse()=pype32.directories.ImageExportTable-class.html#parse,Static Method pype32.directories.ImageImportDescriptor.parse()=pype32.directories.ImageImportDescriptor-class.html#parse,Static Method pype32.directories.ImageImportDescriptorEntry.parse()=pype32.directories.ImageImportDescriptorEntry-class.html#parse,Static Method pype32.directories.ImageLoadConfigDirectory.parse()=pype32.directories.ImageLoadConfigDirectory-class.html#parse,Static Method pype32.directories.ImageLoadConfigDirectory64.parse()=pype32.directories.ImageLoadConfigDirectory64-class.html#parse,Static Method pype32.directories.NETDirectory.parse()=pype32.directories.NETDirectory-class.html#parse,Static Method pype32.directories.NetDirectory.parse()=pype32.directories.NetDirectory-class.html#parse,Static Method pype32.directories.NetMetaDataHeader.parse()=pype32.directories.NetMetaDataHeader-class.html#parse,Static Method pype32.directories.NetMetaDataStreamEntry.parse()=pype32.directories.NetMetaDataStreamEntry-class.html#parse,Static Method pype32.directories.NetMetaDataStreams.parse()=pype32.directories.NetMetaDataStreams-class.html#parse,Static Method pype32.directories.NetMetaDataTableHeader.parse()=pype32.directories.NetMetaDataTableHeader-class.html#parse,Static Method pype32.directories.NetMetaDataTables.parse()=pype32.directories.NetMetaDataTables-class.html#parse,Static Method pype32.directories.NetResources.parse()=pype32.directories.NetResources-class.html#parse,Static Method pype32.directories.TLSDirectory.parse()=pype32.directories.TLSDirectory-class.html#parse,Static Method pype32.directories.TLSDirectory64.parse()=pype32.directories.TLSDirectory64-class.html#parse,Method pype32.dotnet.BlobHeapIndex.parse()=pype32.dotnet.BlobHeapIndex-class.html#parse,Method pype32.dotnet.GuidHeapIndex.parse()=pype32.dotnet.GuidHeapIndex-class.html#parse,Method pype32.dotnet.MultiTableIndex.parse()=pype32.dotnet.MultiTableIndex-class.html#parse,Method pype32.dotnet.StringHeapIndex.parse()=pype32.dotnet.StringHeapIndex-class.html#parse,Static Method pype32.pype32.DosHeader.parse()=pype32.pype32.DosHeader-class.html#parse,Static Method pype32.pype32.FileHeader.parse()=pype32.pype32.FileHeader-class.html#parse,Static Method pype32.pype32.NtHeaders.parse()=pype32.pype32.NtHeaders-class.html#parse,Static Method pype32.pype32.OptionalHeader.parse()=pype32.pype32.OptionalHeader-class.html#parse,Static Method pype32.pype32.OptionalHeader64.parse()=pype32.pype32.OptionalHeader64-class.html#parse,Static Method pype32.pype32.SectionHeader.parse()=pype32.pype32.SectionHeader-class.html#parse,Static Method pype32.pype32.SectionHeaders.parse()=pype32.pype32.SectionHeaders-class.html#parse,Static Method pype32.pype32.Sections.parse()=pype32.pype32.Sections-class.html#parse"><a title="pype32.datadirs.DataDirectory.parse
+pype32.datadirs.Directory.parse
+pype32.datatypes.Array.parse
+pype32.datatypes.BYTE.parse
+pype32.datatypes.DWORD.parse
+pype32.datatypes.QWORD.parse
+pype32.datatypes.WORD.parse
+pype32.directories.ExportTableEntry.parse
+pype32.directories.ImageBaseRelocationEntry.parse
+pype32.directories.ImageBoundForwarderRef.parse
+pype32.directories.ImageBoundForwarderRefEntry.parse
+pype32.directories.ImageBoundImportDescriptor.parse
+pype32.directories.ImageBoundImportDescriptorEntry.parse
+pype32.directories.ImageDebugDirectories.parse
+pype32.directories.ImageDebugDirectory.parse
+pype32.directories.ImageExportTable.parse
+pype32.directories.ImageImportDescriptor.parse
+pype32.directories.ImageImportDescriptorEntry.parse
+pype32.directories.ImageLoadConfigDirectory.parse
+pype32.directories.ImageLoadConfigDirectory64.parse
+pype32.directories.NETDirectory.parse
+pype32.directories.NetDirectory.parse
+pype32.directories.NetMetaDataHeader.parse
+pype32.directories.NetMetaDataStreamEntry.parse
+pype32.directories.NetMetaDataStreams.parse
+pype32.directories.NetMetaDataTableHeader.parse
+pype32.directories.NetMetaDataTables.parse
+pype32.directories.NetResources.parse
+pype32.directories.TLSDirectory.parse
+pype32.directories.TLSDirectory64.parse
+pype32.dotnet.BlobHeapIndex.parse
+pype32.dotnet.GuidHeapIndex.parse
+pype32.dotnet.MultiTableIndex.parse
+pype32.dotnet.StringHeapIndex.parse
+pype32.pype32.DosHeader.parse
+pype32.pype32.FileHeader.parse
+pype32.pype32.NtHeaders.parse
+pype32.pype32.OptionalHeader.parse
+pype32.pype32.OptionalHeader64.parse
+pype32.pype32.SectionHeader.parse
+pype32.pype32.SectionHeaders.parse
+pype32.pype32.Sections.parse" class="py-name" href="#" onclick="return doclink('link-24', 'parse', 'link-24');">parse</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">)</tt> </tt>
+<a name="L368"></a><tt class="py-lineno">368</tt>  <tt class="py-line">                <tt class="py-name">result</tt><tt class="py-op">.</tt><tt class="py-name">update</tt><tt class="py-op">(</tt><tt class="py-op">{</tt> <tt class="py-name">k</tt><tt class="py-op">:</tt> <tt class="py-name">parsed</tt><tt class="py-op">.</tt><tt class="py-name">value</tt> <tt class="py-op">}</tt><tt class="py-op">)</tt> </tt>
+<a name="L369"></a><tt class="py-lineno">369</tt>  <tt class="py-line">                <tt class="py-keyword">break</tt> <tt class="py-comment"># only process the first</tt> </tt>
+<a name="L370"></a><tt class="py-lineno">370</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">result</tt> </tt>
+</div><a name="L371"></a><tt class="py-lineno">371</tt>  <tt class="py-line"> </tt>
+<a name="ReadData.read7BitEncodedInteger"></a><div id="ReadData.read7BitEncodedInteger-def"><a name="L372"></a><tt class="py-lineno">372</tt> <a class="py-toggle" href="#" id="ReadData.read7BitEncodedInteger-toggle" onclick="return toggle('ReadData.read7BitEncodedInteger');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pype32.utils.ReadData-class.html#read7BitEncodedInteger">read7BitEncodedInteger</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ReadData.read7BitEncodedInteger-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ReadData.read7BitEncodedInteger-expanded"><a name="L373"></a><tt class="py-lineno">373</tt>  <tt class="py-line">        <tt class="py-name">b</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-25" class="py-name" targets="Method pype32.utils.ReadData.readByte()=pype32.utils.ReadData-class.html#readByte"><a title="pype32.utils.ReadData.readByte" class="py-name" href="#" onclick="return doclink('link-25', 'readByte', 'link-25');">readByte</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L374"></a><tt class="py-lineno">374</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">b</tt> <tt class="py-op">&amp;</tt> <tt class="py-number">0x80</tt><tt class="py-op">:</tt> </tt>
+<a name="L375"></a><tt class="py-lineno">375</tt>  <tt class="py-line">            <tt class="py-name">result</tt> <tt class="py-op">=</tt> <tt class="py-name">b</tt> </tt>
+<a name="L376"></a><tt class="py-lineno">376</tt>  <tt class="py-line">        <tt class="py-keyword">elif</tt> <tt class="py-keyword">not</tt> <tt class="py-name">b</tt> <tt class="py-op">&amp;</tt> <tt class="py-number">0x40</tt><tt class="py-op">:</tt> </tt>
+<a name="L377"></a><tt class="py-lineno">377</tt>  <tt class="py-line">            <tt class="py-name">result</tt> <tt class="py-op">=</tt> <tt class="py-name">b</tt> <tt class="py-op">&amp;</tt> <tt class="py-number">0x3f</tt> </tt>
+<a name="L378"></a><tt class="py-lineno">378</tt>  <tt class="py-line">            <tt class="py-name">result</tt> <tt class="py-op">=</tt> <tt class="py-name">result</tt> <tt class="py-op">&lt;&lt;</tt> <tt class="py-number">8</tt> <tt class="py-op">|</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-26" class="py-name"><a title="pype32.utils.ReadData.readByte" class="py-name" href="#" onclick="return doclink('link-26', 'readByte', 'link-25');">readByte</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L379"></a><tt class="py-lineno">379</tt>  <tt class="py-line">        <tt class="py-keyword">elif</tt> <tt class="py-keyword">not</tt> <tt class="py-name">b</tt> <tt class="py-op">&amp;</tt> <tt class="py-number">0x20</tt><tt class="py-op">:</tt> </tt>
+<a name="L380"></a><tt class="py-lineno">380</tt>  <tt class="py-line">            <tt class="py-name">result</tt> <tt class="py-op">=</tt> <tt class="py-name">b</tt> <tt class="py-op">&amp;</tt> <tt class="py-number">0x1f</tt> </tt>
+<a name="L381"></a><tt class="py-lineno">381</tt>  <tt class="py-line">            <tt class="py-name">result</tt> <tt class="py-op">=</tt> <tt class="py-name">result</tt> <tt class="py-op">&lt;&lt;</tt> <tt class="py-number">8</tt> <tt class="py-op">|</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-27" class="py-name"><a title="pype32.utils.ReadData.readByte" class="py-name" href="#" onclick="return doclink('link-27', 'readByte', 'link-25');">readByte</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L382"></a><tt class="py-lineno">382</tt>  <tt class="py-line">            <tt class="py-name">result</tt> <tt class="py-op">=</tt> <tt class="py-name">result</tt> <tt class="py-op">&lt;&lt;</tt> <tt class="py-number">8</tt> <tt class="py-op">|</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-28" class="py-name"><a title="pype32.utils.ReadData.readByte" class="py-name" href="#" onclick="return doclink('link-28', 'readByte', 'link-25');">readByte</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L383"></a><tt class="py-lineno">383</tt>  <tt class="py-line">            <tt class="py-name">result</tt> <tt class="py-op">=</tt> <tt class="py-name">result</tt> <tt class="py-op">&lt;&lt;</tt> <tt class="py-number">8</tt> <tt class="py-op">|</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-29" class="py-name"><a title="pype32.utils.ReadData.readByte" class="py-name" href="#" onclick="return doclink('link-29', 'readByte', 'link-25');">readByte</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L384"></a><tt class="py-lineno">384</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L385"></a><tt class="py-lineno">385</tt>  <tt class="py-line">            <tt class="py-keyword">raise</tt> <tt class="py-name">Exception</tt><tt class="py-op">(</tt><tt class="py-string">"Invalid 7-bit encoded number."</tt><tt class="py-op">)</tt> </tt>
+<a name="L386"></a><tt class="py-lineno">386</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">result</tt> </tt>
+</div><a name="L387"></a><tt class="py-lineno">387</tt>  <tt class="py-line"> </tt>
+<a name="ReadData.readDotNetString"></a><div id="ReadData.readDotNetString-def"><a name="L388"></a><tt class="py-lineno">388</tt> <a class="py-toggle" href="#" id="ReadData.readDotNetString-toggle" onclick="return toggle('ReadData.readDotNetString');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pype32.utils.ReadData-class.html#readDotNetString">readDotNetString</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ReadData.readDotNetString-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ReadData.readDotNetString-expanded"><a name="L389"></a><tt class="py-lineno">389</tt>  <tt class="py-line">        <tt class="py-name">string</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-30" class="py-name"><a title="pype32.utils.ReadData.readString" class="py-name" href="#" onclick="return doclink('link-30', 'readString', 'link-19');">readString</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L390"></a><tt class="py-lineno">390</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-31" class="py-name" targets="Method pype32.utils.ReadData.skipBytes()=pype32.utils.ReadData-class.html#skipBytes,Method pype32.utils.WriteData.skipBytes()=pype32.utils.WriteData-class.html#skipBytes"><a title="pype32.utils.ReadData.skipBytes
+pype32.utils.WriteData.skipBytes" class="py-name" href="#" onclick="return doclink('link-31', 'skipBytes', 'link-31');">skipBytes</a></tt><tt class="py-op">(</tt><tt class="py-number">1</tt><tt class="py-op">)</tt> </tt>
+<a name="L391"></a><tt class="py-lineno">391</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">string</tt> </tt>
+</div><a name="L392"></a><tt class="py-lineno">392</tt>  <tt class="py-line"> </tt>
+<a name="ReadData.readDotNetUnicodeString"></a><div id="ReadData.readDotNetUnicodeString-def"><a name="L393"></a><tt class="py-lineno">393</tt> <a class="py-toggle" href="#" id="ReadData.readDotNetUnicodeString-toggle" onclick="return toggle('ReadData.readDotNetUnicodeString');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pype32.utils.ReadData-class.html#readDotNetUnicodeString">readDotNetUnicodeString</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ReadData.readDotNetUnicodeString-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ReadData.readDotNetUnicodeString-expanded"><a name="L394"></a><tt class="py-lineno">394</tt>  <tt class="py-line">        <tt class="py-name">length</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-32" class="py-name" targets="Method pype32.utils.ReadData.read7BitEncodedInteger()=pype32.utils.ReadData-class.html#read7BitEncodedInteger"><a title="pype32.utils.ReadData.read7BitEncodedInteger" class="py-name" href="#" onclick="return doclink('link-32', 'read7BitEncodedInteger', 'link-32');">read7BitEncodedInteger</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L395"></a><tt class="py-lineno">395</tt>  <tt class="py-line">        <tt class="py-name">flag</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L396"></a><tt class="py-lineno">396</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">length</tt> <tt class="py-op">%</tt> <tt class="py-number">2</tt><tt class="py-op">:</tt> </tt>
+<a name="L397"></a><tt class="py-lineno">397</tt>  <tt class="py-line">            <tt class="py-name">string</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-33" class="py-name"><a title="pype32.utils.ReadData.read" class="py-name" href="#" onclick="return doclink('link-33', 'read', 'link-22');">read</a></tt><tt class="py-op">(</tt><tt class="py-name">length</tt> <tt class="py-op">-</tt> <tt class="py-number">1</tt><tt class="py-op">)</tt> </tt>
+<a name="L398"></a><tt class="py-lineno">398</tt>  <tt class="py-line">            <tt class="py-name">flag</tt> <tt class="py-op">=</tt> <tt class="py-name">bool</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-34" class="py-name"><a title="pype32.utils.ReadData.readByte" class="py-name" href="#" onclick="return doclink('link-34', 'readByte', 'link-25');">readByte</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L399"></a><tt class="py-lineno">399</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L400"></a><tt class="py-lineno">400</tt>  <tt class="py-line">            <tt class="py-name">string</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-35" class="py-name"><a title="pype32.utils.ReadData.read" class="py-name" href="#" onclick="return doclink('link-35', 'read', 'link-22');">read</a></tt><tt class="py-op">(</tt><tt class="py-name">length</tt><tt class="py-op">)</tt> </tt>
+<a name="L401"></a><tt class="py-lineno">401</tt>  <tt class="py-line">        <tt class="py-name">string</tt> <tt class="py-op">=</tt> <tt class="py-name">string</tt><tt class="py-op">.</tt><tt class="py-name">decode</tt><tt class="py-op">(</tt><tt class="py-string">'utf_16'</tt><tt class="py-op">)</tt> </tt>
+<a name="L402"></a><tt class="py-lineno">402</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">string</tt> </tt>
+</div><a name="L403"></a><tt class="py-lineno">403</tt>  <tt class="py-line"> </tt>
+<a name="ReadData.readDotNetGuid"></a><div id="ReadData.readDotNetGuid-def"><a name="L404"></a><tt class="py-lineno">404</tt> <a class="py-toggle" href="#" id="ReadData.readDotNetGuid-toggle" onclick="return toggle('ReadData.readDotNetGuid');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pype32.utils.ReadData-class.html#readDotNetGuid">readDotNetGuid</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ReadData.readDotNetGuid-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ReadData.readDotNetGuid-expanded"><a name="L405"></a><tt class="py-lineno">405</tt>  <tt class="py-line">        <tt class="py-name">guid</tt> <tt class="py-op">=</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">uuid</tt><tt class="py-op">.</tt><tt class="py-name">UUID</tt><tt class="py-op">(</tt><tt class="py-name">bytes</tt><tt class="py-op">=</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-36" class="py-name"><a title="pype32.utils.ReadData.read" class="py-name" href="#" onclick="return doclink('link-36', 'read', 'link-22');">read</a></tt><tt class="py-op">(</tt><tt class="py-number">16</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L406"></a><tt class="py-lineno">406</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">guid</tt> </tt>
+</div><a name="L407"></a><tt class="py-lineno">407</tt>  <tt class="py-line"> </tt>
+<a name="ReadData.readDotNetBlob"></a><div id="ReadData.readDotNetBlob-def"><a name="L408"></a><tt class="py-lineno">408</tt> <a class="py-toggle" href="#" id="ReadData.readDotNetBlob-toggle" onclick="return toggle('ReadData.readDotNetBlob');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pype32.utils.ReadData-class.html#readDotNetBlob">readDotNetBlob</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ReadData.readDotNetBlob-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ReadData.readDotNetBlob-expanded"><a name="L409"></a><tt class="py-lineno">409</tt>  <tt class="py-line">        <tt class="py-name">length</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-37" class="py-name"><a title="pype32.utils.ReadData.read7BitEncodedInteger" class="py-name" href="#" onclick="return doclink('link-37', 'read7BitEncodedInteger', 'link-32');">read7BitEncodedInteger</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L410"></a><tt class="py-lineno">410</tt>  <tt class="py-line">        <tt class="py-name">blob</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-38" class="py-name"><a title="pype32.utils.ReadData.read" class="py-name" href="#" onclick="return doclink('link-38', 'read', 'link-22');">read</a></tt><tt class="py-op">(</tt><tt class="py-name">length</tt><tt class="py-op">)</tt> </tt>
+<a name="L411"></a><tt class="py-lineno">411</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">blob</tt> </tt>
+</div></div><a name="L412"></a><tt class="py-lineno">412</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pype32-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Mon Oct 26 20:15:26 2015
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

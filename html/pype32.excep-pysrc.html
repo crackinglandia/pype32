@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>pype32.excep</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pype32-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="pype32-module.html">Package&nbsp;pype32</a> ::
+        Module&nbsp;excep
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="pype32.excep-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="pype32.excep-module.html" onclick="show_private();">Module pype32.excep</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment">#!/usr/bin/python</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment"># -*- coding: utf-8 -*- </tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment"># Copyright (c) 2013, Nahuel Riva </tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment"># All rights reserved. </tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-comment"># Redistribution and use in source and binary forms, with or without </tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-comment"># modification, are permitted provided that the following conditions are met: </tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-comment">#     * Redistributions of source code must retain the above copyright notice, </tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-comment">#       this list of conditions and the following disclaimer. </tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-comment">#     * Redistributions in binary form must reproduce the above copyright </tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-comment">#       notice,this list of conditions and the following disclaimer in the </tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-comment">#       documentation and/or other materials provided with the distribution. </tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-comment">#     * Neither the name of the copyright holder nor the names of its </tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-comment">#       contributors may be used to endorse or promote products derived from </tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-comment">#       this software without specific prior written permission. </tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-comment"># </tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-comment"># THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" </tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-comment"># AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE </tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-comment"># IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE </tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-comment"># ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE </tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-comment"># LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR </tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-comment"># CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF </tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-comment"># SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS </tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-comment"># INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN </tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt class="py-comment"># CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) </tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"><tt class="py-comment"># ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE </tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"><tt class="py-comment"># POSSIBILITY OF SUCH DAMAGE. </tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"><tt class="py-docstring">Exceptions used by the entire library.</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line"><tt class="py-docstring">@group Base exceptions: </tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line"><tt class="py-docstring">    PyPe32Exception, PyPe32Warning</tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line"><tt class="py-docstring">@group Warnings: </tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"><tt class="py-docstring">    PEWarning</tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line"><tt class="py-docstring">    </tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line"><tt class="py-docstring">@group Exceptions: </tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line"><tt class="py-docstring">    PEException,NotValidPathException,WrongOffsetValueException,DirectoryEntriesLengthException,</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line"><tt class="py-docstring">    TypeNotSupportedException,ArrayTypeException,DataLengthException,ReadDataOffsetException,</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line"><tt class="py-docstring">    WriteDataOffsetException,InstanceErrorException,DataMismatchException,SectionHeadersException,</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line"><tt class="py-docstring">    DirectoryEntryException,InvalidParameterException</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line"> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line"><tt id="link-0" class="py-name" targets="Variable pype32.__revision__=pype32-module.html#__revision__,Variable pype32.baseclasses.__revision__=pype32.baseclasses-module.html#__revision__,Variable pype32.consts.__revision__=pype32.consts-module.html#__revision__,Variable pype32.datadirs.__revision__=pype32.datadirs-module.html#__revision__,Variable pype32.datatypes.__revision__=pype32.datatypes-module.html#__revision__,Variable pype32.directories.__revision__=pype32.directories-module.html#__revision__,Variable pype32.excep.__revision__=pype32.excep-module.html#__revision__,Variable pype32.pype32.__revision__=pype32.pype32-module.html#__revision__,Variable pype32.utils.__revision__=pype32.utils-module.html#__revision__"><a title="pype32.__revision__
+pype32.baseclasses.__revision__
+pype32.consts.__revision__
+pype32.datadirs.__revision__
+pype32.datatypes.__revision__
+pype32.directories.__revision__
+pype32.excep.__revision__
+pype32.pype32.__revision__
+pype32.utils.__revision__" class="py-name" href="#" onclick="return doclink('link-0', '__revision__', 'link-0');">__revision__</a></tt> <tt class="py-op">=</tt> <tt class="py-string">"$Id$"</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line"> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line"><tt class="py-name">__all__</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line">           <tt class="py-string">"PyPe32Exception"</tt><tt class="py-op">,</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line">            <tt class="py-string">"PyPe32Warning"</tt><tt class="py-op">,</tt>  </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line">            <tt class="py-string">"PEWarning"</tt><tt class="py-op">,</tt>  </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">            <tt class="py-string">"PEException"</tt><tt class="py-op">,</tt>  </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line">            <tt class="py-string">"NotValidPathException"</tt><tt class="py-op">,</tt>  </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line">            <tt class="py-string">"WrongOffsetValueException"</tt><tt class="py-op">,</tt>  </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line">            <tt class="py-string">"DirectoryEntriesLengthException"</tt><tt class="py-op">,</tt>  </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line">            <tt class="py-string">"TypeNotSupportedException"</tt><tt class="py-op">,</tt>  </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line">            <tt class="py-string">"ArrayTypeException"</tt><tt class="py-op">,</tt>  </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line">            <tt class="py-string">"DataLengthException"</tt><tt class="py-op">,</tt>  </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line">            <tt class="py-string">"ReadDataOffsetException"</tt><tt class="py-op">,</tt>  </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line">            <tt class="py-string">"WriteDataOffsetException"</tt><tt class="py-op">,</tt>  </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line">            <tt class="py-string">"InstanceErrorException"</tt><tt class="py-op">,</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line">            <tt class="py-string">"DataMismatchException"</tt><tt class="py-op">,</tt>  </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">            <tt class="py-string">"SectionHeadersException"</tt><tt class="py-op">,</tt>  </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line">            <tt class="py-string">"DirectoryEntryException"</tt><tt class="py-op">,</tt>  </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">            <tt class="py-string">"InvalidParameterException"</tt><tt class="py-op">,</tt>  </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line">           <tt class="py-op">]</tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line">            </tt>
+<a name="PyPe32Exception"></a><div id="PyPe32Exception-def"><a name="L69"></a><tt class="py-lineno"> 69</tt> <a class="py-toggle" href="#" id="PyPe32Exception-toggle" onclick="return toggle('PyPe32Exception');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pype32.excep.PyPe32Exception-class.html">PyPe32Exception</a><tt class="py-op">(</tt><tt class="py-base-class">Exception</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="PyPe32Exception-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="PyPe32Exception-expanded"><a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line">    <tt class="py-docstring">"""Base exception class."""</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line">    <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line"> </tt>
+<a name="PyPe32Warning"></a><div id="PyPe32Warning-def"><a name="L73"></a><tt class="py-lineno"> 73</tt> <a class="py-toggle" href="#" id="PyPe32Warning-toggle" onclick="return toggle('PyPe32Warning');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pype32.excep.PyPe32Warning-class.html">PyPe32Warning</a><tt class="py-op">(</tt><tt class="py-base-class">Exception</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="PyPe32Warning-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="PyPe32Warning-expanded"><a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line">    <tt class="py-docstring">"""Base warning class."""</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">    <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line"> </tt>
+<a name="PEWarning"></a><div id="PEWarning-def"><a name="L77"></a><tt class="py-lineno"> 77</tt> <a class="py-toggle" href="#" id="PEWarning-toggle" onclick="return toggle('PEWarning');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pype32.excep.PEWarning-class.html">PEWarning</a><tt class="py-op">(</tt><tt class="py-base-class">PyPe32Warning</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="PEWarning-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="PEWarning-expanded"><a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line">    <tt class="py-docstring">"""Raised when a suspicious value is found into the PE instance."""</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">    <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">     </tt>
+<a name="PEException"></a><div id="PEException-def"><a name="L81"></a><tt class="py-lineno"> 81</tt> <a class="py-toggle" href="#" id="PEException-toggle" onclick="return toggle('PEException');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pype32.excep.PEException-class.html">PEException</a><tt class="py-op">(</tt><tt class="py-base-class">PyPe32Exception</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="PEException-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="PEException-expanded"><a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line">    <tt class="py-docstring">"""Raised when an invalid field on the PE instance was found."""</tt> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line">    <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">     </tt>
+<a name="NotValidPathException"></a><div id="NotValidPathException-def"><a name="L85"></a><tt class="py-lineno"> 85</tt> <a class="py-toggle" href="#" id="NotValidPathException-toggle" onclick="return toggle('NotValidPathException');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pype32.excep.NotValidPathException-class.html">NotValidPathException</a><tt class="py-op">(</tt><tt class="py-base-class">PyPe32Exception</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="NotValidPathException-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="NotValidPathException-expanded"><a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">    <tt class="py-docstring">"""Raised when a path wasn't found or it is an invalid path."""</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">    <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line">     </tt>
+<a name="WrongOffsetValueException"></a><div id="WrongOffsetValueException-def"><a name="L89"></a><tt class="py-lineno"> 89</tt> <a class="py-toggle" href="#" id="WrongOffsetValueException-toggle" onclick="return toggle('WrongOffsetValueException');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pype32.excep.WrongOffsetValueException-class.html">WrongOffsetValueException</a><tt class="py-op">(</tt><tt class="py-base-class">PyPe32Exception</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="WrongOffsetValueException-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="WrongOffsetValueException-expanded"><a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line"><tt class="py-docstring">    Used primary by the L{ReadData} and L{WriteData} object in read/write operations when an invalid</tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line"><tt class="py-docstring">    offset value was used.</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">    <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">     </tt>
+<a name="DirectoryEntriesLengthException"></a><div id="DirectoryEntriesLengthException-def"><a name="L96"></a><tt class="py-lineno"> 96</tt> <a class="py-toggle" href="#" id="DirectoryEntriesLengthException-toggle" onclick="return toggle('DirectoryEntriesLengthException');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pype32.excep.DirectoryEntriesLengthException-class.html">DirectoryEntriesLengthException</a><tt class="py-op">(</tt><tt class="py-base-class">PyPe32Exception</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="DirectoryEntriesLengthException-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="DirectoryEntriesLengthException-expanded"><a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">    <tt class="py-docstring">"""Raised when the the number of entries in a L{DataDirectory} object is different from L{consts.IMAGE_NUMBEROF_DIRECTORY_ENTRIES}."""</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">    <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line"> </tt>
+<a name="TypeNotSupportedException"></a><div id="TypeNotSupportedException-def"><a name="L100"></a><tt class="py-lineno">100</tt> <a class="py-toggle" href="#" id="TypeNotSupportedException-toggle" onclick="return toggle('TypeNotSupportedException');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pype32.excep.TypeNotSupportedException-class.html">TypeNotSupportedException</a><tt class="py-op">(</tt><tt class="py-base-class">PyPe32Exception</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="TypeNotSupportedException-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="TypeNotSupportedException-expanded"><a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line">    <tt class="py-docstring">"""This exception must be used when an invalid data type is used within the library."""</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line">    <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line">     </tt>
+<a name="ArrayTypeException"></a><div id="ArrayTypeException-def"><a name="L104"></a><tt class="py-lineno">104</tt> <a class="py-toggle" href="#" id="ArrayTypeException-toggle" onclick="return toggle('ArrayTypeException');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pype32.excep.ArrayTypeException-class.html">ArrayTypeException</a><tt class="py-op">(</tt><tt class="py-base-class">PyPe32Exception</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ArrayTypeException-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="ArrayTypeException-expanded"><a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line">    <tt class="py-docstring">"""Raised when creating an unsupported type of array."""</tt> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line">    <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line"> </tt>
+<a name="DataLengthException"></a><div id="DataLengthException-def"><a name="L108"></a><tt class="py-lineno">108</tt> <a class="py-toggle" href="#" id="DataLengthException-toggle" onclick="return toggle('DataLengthException');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pype32.excep.DataLengthException-class.html">DataLengthException</a><tt class="py-op">(</tt><tt class="py-base-class">PyPe32Exception</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="DataLengthException-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="DataLengthException-expanded"><a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">    <tt class="py-docstring">"""Raised when data lengths does not match."""</tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line">    <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line">     </tt>
+<a name="ReadDataOffsetException"></a><div id="ReadDataOffsetException-def"><a name="L112"></a><tt class="py-lineno">112</tt> <a class="py-toggle" href="#" id="ReadDataOffsetException-toggle" onclick="return toggle('ReadDataOffsetException');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pype32.excep.ReadDataOffsetException-class.html">ReadDataOffsetException</a><tt class="py-op">(</tt><tt class="py-base-class">PyPe32Exception</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ReadDataOffsetException-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="ReadDataOffsetException-expanded"><a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">    <tt class="py-docstring">"""This exception must be raised when reading from an invalid offset."""</tt> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line">    <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line"> </tt>
+<a name="WriteDataOffsetException"></a><div id="WriteDataOffsetException-def"><a name="L116"></a><tt class="py-lineno">116</tt> <a class="py-toggle" href="#" id="WriteDataOffsetException-toggle" onclick="return toggle('WriteDataOffsetException');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pype32.excep.WriteDataOffsetException-class.html">WriteDataOffsetException</a><tt class="py-op">(</tt><tt class="py-base-class">PyPe32Exception</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="WriteDataOffsetException-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="WriteDataOffsetException-expanded"><a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line">    <tt class="py-docstring">"""This exception must be raised when writing to an invalid offset."""</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line">    <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line">     </tt>
+<a name="InstanceErrorException"></a><div id="InstanceErrorException-def"><a name="L120"></a><tt class="py-lineno">120</tt> <a class="py-toggle" href="#" id="InstanceErrorException-toggle" onclick="return toggle('InstanceErrorException');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pype32.excep.InstanceErrorException-class.html">InstanceErrorException</a><tt class="py-op">(</tt><tt class="py-base-class">PyPe32Exception</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="InstanceErrorException-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="InstanceErrorException-expanded"><a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line">    <tt class="py-docstring">"""This exception is raised when an instance parameter was not specified."""</tt> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line">    <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line">     </tt>
+<a name="DataMismatchException"></a><div id="DataMismatchException-def"><a name="L124"></a><tt class="py-lineno">124</tt> <a class="py-toggle" href="#" id="DataMismatchException-toggle" onclick="return toggle('DataMismatchException');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pype32.excep.DataMismatchException-class.html">DataMismatchException</a><tt class="py-op">(</tt><tt class="py-base-class">PyPe32Exception</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="DataMismatchException-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="DataMismatchException-expanded"><a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line">    <tt class="py-docstring">"""Raised when two different types of data does not match."""</tt> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line">    <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line">     </tt>
+<a name="SectionHeadersException"></a><div id="SectionHeadersException-def"><a name="L128"></a><tt class="py-lineno">128</tt> <a class="py-toggle" href="#" id="SectionHeadersException-toggle" onclick="return toggle('SectionHeadersException');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pype32.excep.SectionHeadersException-class.html">SectionHeadersException</a><tt class="py-op">(</tt><tt class="py-base-class">PyPe32Exception</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SectionHeadersException-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="SectionHeadersException-expanded"><a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line">    <tt class="py-docstring">"""Raised when an error related to a L{pype32.SectionHeader} or L{pype32.SectionHeaders} is found."""</tt> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line">    <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line"> </tt>
+<a name="DirectoryEntryException"></a><div id="DirectoryEntryException-def"><a name="L132"></a><tt class="py-lineno">132</tt> <a class="py-toggle" href="#" id="DirectoryEntryException-toggle" onclick="return toggle('DirectoryEntryException');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pype32.excep.DirectoryEntryException-class.html">DirectoryEntryException</a><tt class="py-op">(</tt><tt class="py-base-class">PyPe32Exception</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="DirectoryEntryException-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="DirectoryEntryException-expanded"><a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line">    <tt class="py-docstring">"""This exception must be raised when an error with the L{Directory} is found."""</tt> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line">    <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line">     </tt>
+<a name="InvalidParameterException"></a><div id="InvalidParameterException-def"><a name="L136"></a><tt class="py-lineno">136</tt> <a class="py-toggle" href="#" id="InvalidParameterException-toggle" onclick="return toggle('InvalidParameterException');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pype32.excep.InvalidParameterException-class.html">InvalidParameterException</a><tt class="py-op">(</tt><tt class="py-base-class">PyPe32Exception</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="InvalidParameterException-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="InvalidParameterException-expanded"><a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line">    <tt class="py-docstring">"""Raised when an invalid parameter is received."""</tt> </tt>
+<a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line">    <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pype32-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Mon Oct 26 20:15:26 2015
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

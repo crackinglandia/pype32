@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>pype32.caching</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pype32-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="pype32-module.html">Package&nbsp;pype32</a> ::
+        Module&nbsp;caching
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="pype32.caching-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="pype32.caching-module.html" onclick="show_private();">Module pype32.caching</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno"> 1</tt>  <tt class="py-line"><tt class="py-comment">#!/usr/bin/env python</tt> </tt>
+<a name="L2"></a><tt class="py-lineno"> 2</tt>  <tt class="py-line"><tt class="py-comment"># -*- coding: utf-8 -*- </tt> </tt>
+<a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"> </tt>
+<a name="L4"></a><tt class="py-lineno"> 4</tt>  <tt class="py-line"><tt class="py-comment"># Copyright (c) 2015, Sandor Nemes</tt> </tt>
+<a name="L5"></a><tt class="py-lineno"> 5</tt>  <tt class="py-line"><tt class="py-comment"># All rights reserved.</tt> </tt>
+<a name="L6"></a><tt class="py-lineno"> 6</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L7"></a><tt class="py-lineno"> 7</tt>  <tt class="py-line"><tt class="py-comment"># Redistribution and use in source and binary forms, with or without</tt> </tt>
+<a name="L8"></a><tt class="py-lineno"> 8</tt>  <tt class="py-line"><tt class="py-comment"># modification, are permitted provided that the following conditions are met:</tt> </tt>
+<a name="L9"></a><tt class="py-lineno"> 9</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L10"></a><tt class="py-lineno">10</tt>  <tt class="py-line"><tt class="py-comment">#     * Redistributions of source code must retain the above copyright notice,</tt> </tt>
+<a name="L11"></a><tt class="py-lineno">11</tt>  <tt class="py-line"><tt class="py-comment">#       this list of conditions and the following disclaimer.</tt> </tt>
+<a name="L12"></a><tt class="py-lineno">12</tt>  <tt class="py-line"><tt class="py-comment">#     * Redistributions in binary form must reproduce the above copyright</tt> </tt>
+<a name="L13"></a><tt class="py-lineno">13</tt>  <tt class="py-line"><tt class="py-comment">#       notice,this list of conditions and the following disclaimer in the</tt> </tt>
+<a name="L14"></a><tt class="py-lineno">14</tt>  <tt class="py-line"><tt class="py-comment">#       documentation and/or other materials provided with the distribution.</tt> </tt>
+<a name="L15"></a><tt class="py-lineno">15</tt>  <tt class="py-line"><tt class="py-comment">#     * Neither the name of the copyright holder nor the names of its</tt> </tt>
+<a name="L16"></a><tt class="py-lineno">16</tt>  <tt class="py-line"><tt class="py-comment">#       contributors may be used to endorse or promote products derived from</tt> </tt>
+<a name="L17"></a><tt class="py-lineno">17</tt>  <tt class="py-line"><tt class="py-comment">#       this software without specific prior written permission.</tt> </tt>
+<a name="L18"></a><tt class="py-lineno">18</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L19"></a><tt class="py-lineno">19</tt>  <tt class="py-line"><tt class="py-comment"># THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"</tt> </tt>
+<a name="L20"></a><tt class="py-lineno">20</tt>  <tt class="py-line"><tt class="py-comment"># AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE</tt> </tt>
+<a name="L21"></a><tt class="py-lineno">21</tt>  <tt class="py-line"><tt class="py-comment"># IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE</tt> </tt>
+<a name="L22"></a><tt class="py-lineno">22</tt>  <tt class="py-line"><tt class="py-comment"># ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE</tt> </tt>
+<a name="L23"></a><tt class="py-lineno">23</tt>  <tt class="py-line"><tt class="py-comment"># LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR</tt> </tt>
+<a name="L24"></a><tt class="py-lineno">24</tt>  <tt class="py-line"><tt class="py-comment"># CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF</tt> </tt>
+<a name="L25"></a><tt class="py-lineno">25</tt>  <tt class="py-line"><tt class="py-comment"># SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS</tt> </tt>
+<a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line"><tt class="py-comment"># INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN</tt> </tt>
+<a name="L27"></a><tt class="py-lineno">27</tt>  <tt class="py-line"><tt class="py-comment"># CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)</tt> </tt>
+<a name="L28"></a><tt class="py-lineno">28</tt>  <tt class="py-line"><tt class="py-comment"># ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE</tt> </tt>
+<a name="L29"></a><tt class="py-lineno">29</tt>  <tt class="py-line"><tt class="py-comment"># POSSIBILITY OF SUCH DAMAGE.</tt> </tt>
+<a name="L30"></a><tt class="py-lineno">30</tt>  <tt class="py-line"> </tt>
+<a name="L31"></a><tt class="py-lineno">31</tt>  <tt class="py-line"><tt id="link-0" class="py-name" targets="Variable pype32.caching.caches=pype32.caching-module.html#caches"><a title="pype32.caching.caches" class="py-name" href="#" onclick="return doclink('link-0', 'caches', 'link-0');">caches</a></tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-op">}</tt> </tt>
+<a name="L32"></a><tt class="py-lineno">32</tt>  <tt class="py-line"> </tt>
+<a name="Cache"></a><div id="Cache-def"><a name="L33"></a><tt class="py-lineno">33</tt> <a class="py-toggle" href="#" id="Cache-toggle" onclick="return toggle('Cache');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="pype32.caching.Cache-class.html">Cache</a><tt class="py-op">(</tt><tt class="py-base-class">object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Cache-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="Cache-expanded"><a name="L34"></a><tt class="py-lineno">34</tt>  <tt class="py-line"> </tt>
+<a name="Cache.__init__"></a><div id="Cache.__init__-def"><a name="L35"></a><tt class="py-lineno">35</tt> <a class="py-toggle" href="#" id="Cache.__init__-toggle" onclick="return toggle('Cache.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pype32.caching.Cache-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">name</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Cache.__init__-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="Cache.__init__-expanded"><a name="L36"></a><tt class="py-lineno">36</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">name</tt> <tt class="py-op">=</tt> <tt class="py-name">name</tt> </tt>
+<a name="L37"></a><tt class="py-lineno">37</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cache</tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-op">}</tt> </tt>
+</div><a name="L38"></a><tt class="py-lineno">38</tt>  <tt class="py-line"> </tt>
+<a name="Cache.get"></a><div id="Cache.get-def"><a name="L39"></a><tt class="py-lineno">39</tt> <a class="py-toggle" href="#" id="Cache.get-toggle" onclick="return toggle('Cache.get');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pype32.caching.Cache-class.html#get">get</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">key</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Cache.get-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="Cache.get-expanded"><a name="L40"></a><tt class="py-lineno">40</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cache</tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Method pype32.caching.Cache.get()=pype32.caching.Cache-class.html#get"><a title="pype32.caching.Cache.get" class="py-name" href="#" onclick="return doclink('link-1', 'get', 'link-1');">get</a></tt><tt class="py-op">(</tt><tt class="py-name">key</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L41"></a><tt class="py-lineno">41</tt>  <tt class="py-line"> </tt>
+<a name="Cache.put"></a><div id="Cache.put-def"><a name="L42"></a><tt class="py-lineno">42</tt> <a class="py-toggle" href="#" id="Cache.put-toggle" onclick="return toggle('Cache.put');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="pype32.caching.Cache-class.html#put">put</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">key</tt><tt class="py-op">,</tt> <tt class="py-param">value</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Cache.put-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="Cache.put-expanded"><a name="L43"></a><tt class="py-lineno">43</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cache</tt><tt class="py-op">.</tt><tt class="py-name">update</tt><tt class="py-op">(</tt><tt class="py-op">{</tt> <tt class="py-name">key</tt><tt class="py-op">:</tt> <tt class="py-name">value</tt> <tt class="py-op">}</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L44"></a><tt class="py-lineno">44</tt>  <tt class="py-line"> </tt>
+<a name="getCache"></a><div id="getCache-def"><a name="L45"></a><tt class="py-lineno">45</tt> <a class="py-toggle" href="#" id="getCache-toggle" onclick="return toggle('getCache');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="pype32.caching-module.html#getCache">getCache</a><tt class="py-op">(</tt><tt class="py-param">name</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="getCache-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="getCache-expanded"><a name="L46"></a><tt class="py-lineno">46</tt>  <tt class="py-line">    <tt class="py-name">cache</tt> <tt class="py-op">=</tt> <tt id="link-2" class="py-name"><a title="pype32.caching.caches" class="py-name" href="#" onclick="return doclink('link-2', 'caches', 'link-0');">caches</a></tt><tt class="py-op">.</tt><tt id="link-3" class="py-name"><a title="pype32.caching.Cache.get" class="py-name" href="#" onclick="return doclink('link-3', 'get', 'link-1');">get</a></tt><tt class="py-op">(</tt><tt class="py-name">name</tt><tt class="py-op">)</tt> </tt>
+<a name="L47"></a><tt class="py-lineno">47</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">cache</tt> <tt class="py-keyword">is</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L48"></a><tt class="py-lineno">48</tt>  <tt class="py-line">        <tt class="py-name">cache</tt> <tt class="py-op">=</tt> <tt id="link-4" class="py-name" targets="Class pype32.caching.Cache=pype32.caching.Cache-class.html"><a title="pype32.caching.Cache" class="py-name" href="#" onclick="return doclink('link-4', 'Cache', 'link-4');">Cache</a></tt><tt class="py-op">(</tt><tt class="py-name">name</tt><tt class="py-op">)</tt> </tt>
+<a name="L49"></a><tt class="py-lineno">49</tt>  <tt class="py-line">        <tt id="link-5" class="py-name"><a title="pype32.caching.caches" class="py-name" href="#" onclick="return doclink('link-5', 'caches', 'link-0');">caches</a></tt><tt class="py-op">[</tt><tt class="py-name">name</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">cache</tt> </tt>
+<a name="L50"></a><tt class="py-lineno">50</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">cache</tt> </tt>
+</div><a name="L51"></a><tt class="py-lineno">51</tt>  <tt class="py-line"> </tt>
+<a name="cached"></a><div id="cached-def"><a name="L52"></a><tt class="py-lineno">52</tt> <a class="py-toggle" href="#" id="cached-toggle" onclick="return toggle('cached');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="pype32.caching-module.html#cached">cached</a><tt class="py-op">(</tt><tt class="py-op">*</tt><tt class="py-param">ids</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="cached-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="cached-expanded"><a name="L53"></a><tt class="py-lineno">53</tt>  <tt class="py-line">    <tt class="py-keyword">def</tt> <tt class="py-def-name">decorator</tt><tt class="py-op">(</tt><tt class="py-param">func</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L54"></a><tt class="py-lineno">54</tt>  <tt class="py-line">        <tt class="py-keyword">def</tt> <tt class="py-def-name">decorated</tt><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-op">*</tt><tt class="py-param">args</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L55"></a><tt class="py-lineno">55</tt>  <tt class="py-line">            <tt class="py-name">funcname</tt> <tt class="py-op">=</tt> <tt class="py-string">"#"</tt><tt class="py-op">.</tt><tt class="py-name">join</tt><tt class="py-op">(</tt><tt class="py-op">[</tt><tt class="py-name">func</tt><tt class="py-op">.</tt><tt class="py-name">__name__</tt><tt class="py-op">]</tt> <tt class="py-op">+</tt> <tt class="py-op">[</tt><tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">_</tt><tt class="py-op">)</tt> <tt class="py-keyword">for</tt> <tt class="py-name">_</tt> <tt class="py-keyword">in</tt> <tt class="py-name">ids</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L56"></a><tt class="py-lineno">56</tt>  <tt class="py-line">            <tt class="py-name">cache</tt> <tt class="py-op">=</tt> <tt id="link-6" class="py-name" targets="Function pype32.caching.getCache()=pype32.caching-module.html#getCache"><a title="pype32.caching.getCache" class="py-name" href="#" onclick="return doclink('link-6', 'getCache', 'link-6');">getCache</a></tt><tt class="py-op">(</tt><tt class="py-name">funcname</tt><tt class="py-op">)</tt> </tt>
+<a name="L57"></a><tt class="py-lineno">57</tt>  <tt class="py-line">            <tt class="py-name">key</tt> <tt class="py-op">=</tt> <tt class="py-name">hash</tt><tt class="py-op">(</tt><tt class="py-name">args</tt><tt class="py-op">)</tt> </tt>
+<a name="L58"></a><tt class="py-lineno">58</tt>  <tt class="py-line">            <tt class="py-name">result</tt> <tt class="py-op">=</tt> <tt class="py-name">cache</tt><tt class="py-op">.</tt><tt id="link-7" class="py-name"><a title="pype32.caching.Cache.get" class="py-name" href="#" onclick="return doclink('link-7', 'get', 'link-1');">get</a></tt><tt class="py-op">(</tt><tt class="py-name">key</tt><tt class="py-op">)</tt> </tt>
+<a name="L59"></a><tt class="py-lineno">59</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">result</tt> <tt class="py-keyword">is</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L60"></a><tt class="py-lineno">60</tt>  <tt class="py-line">                <tt class="py-name">result</tt> <tt class="py-op">=</tt> <tt class="py-name">func</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-op">*</tt><tt class="py-name">args</tt><tt class="py-op">)</tt> </tt>
+<a name="L61"></a><tt class="py-lineno">61</tt>  <tt class="py-line">                <tt class="py-name">cache</tt><tt class="py-op">.</tt><tt id="link-8" class="py-name" targets="Method pype32.caching.Cache.put()=pype32.caching.Cache-class.html#put"><a title="pype32.caching.Cache.put" class="py-name" href="#" onclick="return doclink('link-8', 'put', 'link-8');">put</a></tt><tt class="py-op">(</tt><tt class="py-name">key</tt><tt class="py-op">,</tt> <tt class="py-name">result</tt><tt class="py-op">)</tt> </tt>
+<a name="L62"></a><tt class="py-lineno">62</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> <tt class="py-name">result</tt> </tt>
+</div><a name="L63"></a><tt class="py-lineno">63</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">decorated</tt> </tt>
+</div><a name="L64"></a><tt class="py-lineno">64</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">decorator</tt> </tt>
+</div><a name="L65"></a><tt class="py-lineno">65</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pype32-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Mon Oct 26 20:15:26 2015
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>
