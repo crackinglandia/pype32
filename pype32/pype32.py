@@ -178,10 +178,10 @@ class PE(object):
             raise excep.PEException("Invalid e_lfanew value. Probably not a PE file.")
             
         if self.ntHeaders.signature.value != consts.PE_SIGNATURE: 
-            raise excep.PEException("Invalid PE signature. Found %d instead of %d." % (self.ntHeaders.optionaHeader.signature.value, consts.PE_SIGNATURE))
+            raise excep.PEException("Invalid PE signature. Found %d instead of %d." % (self.ntHeaders.optionalHeader.signature.value, consts.PE_SIGNATURE))
             
         if self.ntHeaders.optionalHeader.numberOfRvaAndSizes.value > 0x10:
-            print excep.PEWarning("Suspicious value for NumberOfRvaAndSizes: %d." % self.ntHeaders.optionaHeader.numberOfRvaAndSizes.value)
+            print excep.PEWarning("Suspicious value for NumberOfRvaAndSizes: %d." % self.ntHeaders.optionalHeader.numberOfRvaAndSizes.value)
             
     def readFile(self, pathToFile):
         """
@@ -622,7 +622,7 @@ class PE(object):
         sizeOfImage = 0
         for sh in self.sectionHeaders:
             sizeOfImage += sh.misc
-        self.ntHeaders.optionaHeader.sizeoOfImage.value = self._sectionAlignment(sizeOfImage + 0x1000)
+        self.ntHeaders.optionalHeader.sizeoOfImage.value = self._sectionAlignment(sizeOfImage + 0x1000)
     
     def _adjustFileAlignment(self, value, fileAlignment):
         """
