@@ -1409,21 +1409,21 @@ class PE(object):
             rd.setOffset(stream.offset.value)
             rd2 = utils.ReadData(rd.read(stream.size.value))
             stream.info = []
-            if name == "#~" or i == 0:
+            if name == "#~":
                 stream.info = rd2
-            elif name == "#Strings" or i == 1:
+            elif name == "#Strings":
                 while len(rd2) > 0:
                     offset = rd2.tell()
                     stream.info.append({ offset: rd2.readDotNetString() })
-            elif name == "#US" or i == 2:
+            elif name == "#US":
                 while len(rd2) > 0:
                     offset = rd2.tell()
                     stream.info.append({ offset: rd2.readDotNetUnicodeString() })
-            elif name == "#GUID" or i == 3:
+            elif name == "#GUID":
                 while len(rd2) > 0:
                     offset = rd2.tell()
                     stream.info.append({ offset: rd2.readDotNetGuid() })
-            elif name == "#Blob" or i == 4:
+            elif name == "#Blob":
                 while len(rd2) > 0:
                     offset = rd2.tell()
                     stream.info.append({ offset: rd2.readDotNetBlob() })
@@ -1431,7 +1431,7 @@ class PE(object):
         for i in range(numberOfStreams):
             stream = netDirectoryClass.netMetaDataStreams[i]
             name = stream.name.value
-            if name == "#~" or i == 0:
+            if name == "#~":
                 stream.info = directories.NetMetaDataTables.parse(stream.info, netDirectoryClass.netMetaDataStreams)
 
         # parse .NET resources
